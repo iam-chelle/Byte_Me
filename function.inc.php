@@ -1,7 +1,7 @@
 		<?php
-		function createUser($conn,$username,$password){
+		function createUser($conn, $username, $password){
 			$err;
-			$sql = "INSERT INTO 'user_tbl'('username','password') 
+			$sql = "INSERT INTO user(username, password)
 					VALUES (?,?);";
 			
 			$stmt = mysqli_stmt_init($conn);
@@ -17,11 +17,11 @@
 			return true;
 		}
 
-		function uidExists($conn,$username, $password){
+		function uidExists($conn, $username, $password){
 			$err;
-			$sql = "SELECT * FROM 'user_tbl' 
-					WHERE 'username' = ?
-					  AND 'password' =?;";
+			$sql = "SELECT * FROM user
+					WHERE username = ?
+					  AND password =?;";
 			
 			$stmt = mysqli_stmt_init($conn);
 
@@ -34,7 +34,7 @@
 
 			$resultData = mysqli_stmt_get_result($stmt);
 
-			if($row =mysqli_fetch_assoc($resultData)){
+			if($row = mysqli_fetch_assoc($resultData)){
 					return $row;
 			}
 			else{
