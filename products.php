@@ -20,12 +20,19 @@
 						<ul id="MenuItems">
 							<li><a href="index.php">Home</a></li>
 							<li><a href="products.php">Products</a></li>
-							<li><a href="">About us</a></li>
+							<li><a href="about.php">About us</a></li>
 							<li><a href="">Contacts</a></li>
-							<li><a href="">Account</a></li>
+							<li><a href="signin.php">Account</a></li>
 						</ul>
 					</nav>
-					<img src="img/bag.png" alt="" width="30px" height="30px">
+					<a href="cart.php"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
+					
+					<div class="search-box">
+						<input class="search-txt" type="text" name="" placeholder="Type to search">
+						<a class="search-btn" href="#">
+							<i class="fa fa-search"></i>
+						</a>
+					</div>
 					<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>
 			</div>
