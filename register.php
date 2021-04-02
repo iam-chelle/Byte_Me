@@ -1,9 +1,9 @@
-					<!DOCTYPE html>
+							<!DOCTYPE html>
 		<html lang="en">
 		<head>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<link rel="stylesheet" type="text/css" href="css/account.css">
+			<link rel="stylesheet" type="text/css" href="css/style.css">
 			<title>Sue and Venir</title>
 			<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,10 +20,17 @@
 							<li><a href="products.php">Products</a></li>
 							<li><a href="about.php">About us</a></li>
 							<li><a href="">Contacts</a></li>
-							<li><a href="login.php">Account</a></li>
+							<li><a href="signin.php">Account</a></li>
 						</ul>
 					</nav>
-							<img src="img/bag.png" alt="" width="30px" height="30px">
+							<a href="cart.php"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
+
+					<div class="search-box">
+						<input class="search-txt" type="text" name="" placeholder="Type to search">
+						<a class="search-btn" href="#">
+							<i class="fa fa-search"></i>
+						</a>
+					</div>
 							<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>	
 			</div>
@@ -39,7 +46,7 @@
 						<div class="form-container1">
 
 							<div class="form-btn">
-								<span><a href="login.php"> Login<a/></span>
+								<span><a href="signin.php"> Login<a/></span>
 								<span onclick="register()">Sign Up</span>
 								<hr id="Indicator1">
 						</div>
