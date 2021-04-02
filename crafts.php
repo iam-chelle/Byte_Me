@@ -20,12 +20,19 @@
 						<ul id="MenuItems">
 							<li><a href="index.php">Home</a></li>
 							<li><a href="products.php">Products</a></li>
-							<li><a href="">About us</a></li>
+							<li><a href="about.php">About us</a></li>
 							<li><a href="">Contacts</a></li>
-							<li><a href="">Account</a></li>
+							<li><a href="signin.php">Account</a></li>
 						</ul>
 					</nav>
-					<img src="img/bag.png" alt="" width="30px" height="30px">
+					<a href="cart.php"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
+					
+					<div class="search-box">
+						<input class="search-txt" type="text" name="" placeholder="Type to search">
+						<a class="search-btn" href="#">
+							<i class="fa fa-search"></i>
+						</a>
+					</div>
 					<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>
 			</div>
@@ -68,6 +75,7 @@
 						</select>
 						<input type="number" value="1">
 						<a href="" class="btn">Add to Cart</a>
+						<a href="" class="btn">Buy Now</a>
 						<h3>Product Details <i class="fa fa-indent"></i></h3>
 						<p>A ceramic is any of the various hard, brittle, heat-resistant and corrosion-resistant materials made by shaping and then firing a nonmetallic mineral, such as clay.</p>
 						<p align="right"><i>(Cadag's Store)</i></p>
@@ -96,12 +104,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-							<p>Php 100.00</p>
+						</div><br>
+							<p>Php 100.00</p><br>
 							<h3>Product Details</h3>
 						<p> a sturdy native bag woven from buri palm leaves.</p>
 						<p><i>(Rochelle's Accessories)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -113,12 +123,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-							<p>Php 350.00</p>
+						</div><br>
+							<p>Php 350.00</p><br>
 							<h3>Product Details</h3>
 						<p>are constructed from bamboo and rattan. </p>
 						<p><i>(Gerald's Native Products)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -130,12 +142,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-							<p>Php 500.00</p>
+						</div><br>
+							<p>Php 500.00</p><br>
 							<h3>Product Details</h3>
 						<p>Pure abaca round sling bag made locally in Bicol.</p>
 						<p><i>(Gerald's Native Products)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -147,12 +161,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-							<p>Php 150.00</p>
+						</div><br>
+							<p>Php 150.00</p><br>
 							<h3>Product Details</h3>
 						<p>a woven of natural fibers of abaca in a tight-cord pattern.</p>
 						<p><i>(Ica's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -223,12 +239,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-							<p>Php 100.00</p>
+						</div><br>
+							<p>Php 100.00</p><br>
 							<h3>Product Details</h3>
 						<p>Ceramic material, cute pig for fecoration. Banks pig, that will attract and encourage your little one to start saving money and develop a good habit.</p>
 						<p><i>(Cadag's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -240,12 +258,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 200.00</p>
+						</div><br>
+							<p>Php 200.00</p><br>
 							<h3>Product Details</h3>
 						<p> Made from crocheted abaca, the hanging lamp from Shelmed Cottage Treasures evokes a warm and cozy ambience, reminiscent of a traditional Filipino home.</p>
 						<p><i>(Ica's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -257,12 +277,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star-half-o" aria-hidden="true"></i>
 							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 500.00</p>
+						</div><br>
+							<p>Php 500.00</p><br>
 							<h3>Product Details</h3>
 						<p>TThis unique custom made lamp brings the beach into your home. The cut and pierced seashell border lampshade is complimented by the sand and sea shell.</p>
 						<p><i>(Ica's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -274,16 +296,18 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star-half-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 60.00</p>
+						</div><br>
+							<p>Php 60.00</p><br>
 							<h3>Product Details</h3>
 						<p>Ceramic magnet set. This set of six magnets was made by stamping a speckled brown clay with my own handmade stamps.</p>
 						<p><i>(Ica's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 					</div>
 				</div>
-
+			</div>
 	</div>
 </div>
 
