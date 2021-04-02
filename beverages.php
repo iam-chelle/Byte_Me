@@ -20,12 +20,18 @@
 						<ul id="MenuItems">
 							<li><a href="index.php">Home</a></li>
 							<li><a href="products.php">Products</a></li>
-							<li><a href="">About us</a></li>
+							<li><a href="about.php">About us</a></li>
 							<li><a href="">Contacts</a></li>
-							<li><a href="">Account</a></li>
+							<li><a href="signin.php">Account</a></li>
 						</ul>
 					</nav>
-					<img src="img/bag.png" alt="" width="30px" height="30px">
+					<a href="cart.php"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
+					<div class="search-box">
+						<input class="search-txt" type="text" name="" placeholder="Type to search">
+						<a class="search-btn" href="#">
+							<i class="fa fa-search"></i>
+						</a>
+					</div>
 					<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>
 			</div>
@@ -52,6 +58,7 @@
 						</select>
 						<input type="number" value="1">
 						<a href="" class="btn">Add to Cart</a>
+						<a href="" class="btn">Buy Now</a>
 						<h3>Product Details <i class="fa fa-indent"></i></h3>
 						<p> is a bicolano alcoholic beverage created from the sap of various species of palm trees.</p>
 						<p align="right"><i>(Gomez's Store)</i></p>
@@ -66,10 +73,7 @@
 				</div>
 
 				<div class="small-container">
-					<!--<div class="col-2">
-						<img src="img/clothes.jpg" alt="" width="500px" height="500px">
-					</div>-->
-		
+					
 				<div class="row">
 					<div class="col-4">
 						<img src="img/B-lambanog.jpg" alt="" width="200px" height="200px">
@@ -91,12 +95,16 @@
 							<option>Small</option>
 						</select>
 						<input type="number" value="1">
+
 						<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<h3>Product Details</h3>
 						<p>Lambanog or coconut wine or vodka. This local wine is essentially processed tuba and well known for its strength that ordinarily carries regarding 80 to 90 proof alternatives. </p>
 						<p><i>(Gomez's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<p class="icon">Icon buttons:</p>
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -118,12 +126,15 @@
 							<option>Medium</option>
 							<option>Small</option>
 						</select>
+						<input type="number" value="1">
 						<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<h3>Product Details</h3>
 						<p>It is a naturally fermented alcoholic drink made from pure glutinous rice or a combination (glutinous and non-glutinous) with onuad roots, ginger extract and powdered bubod.  </p>
 						<p><i>(Best of Tabaco)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+						<p class="icon">Icon buttons:</p>
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -145,12 +156,15 @@
 							<option>Medium</option>
 							<option>Small</option>
 						</select>
+						<input type="number" value="1">
 						<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<h3>Product Details</h3>
 						<p>Basi is a sugar cane wine made. Basi is made by fermenting boiled, freshly extracted, sugar cane juice. The juice is then boiled in barrels and stored in earthen clay jars called Burnay. </p>
 						<p><i>(Tan's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<p class="icon">Icon buttons:</p>
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -166,18 +180,26 @@
 						<p>Large - Php 100</p>
 						<p>Medium - Php 90</p>
 						<p>Small - Php 60</p> <br>
+			
 						<select>
 							<option>Select </option>
 							<option>Large</option>
 							<option>Medium</option>
 							<option>Small</option>
+
 						</select>
+						
+						<input type="number" value="1">
 						<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<h3>Product Details</h3>
 						<p>palm liquour is distilled from the sap of a nipa palm. It is widely made and available in Santo Domingo, where nipa palms abundantly grow along riverbanks.</p>
 						<p><i>(Cadag's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+						
+							<p class="icon">Icon buttons:</p>
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
+						
 						</div>
 					</div>
 				</div>
