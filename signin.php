@@ -1,5 +1,4 @@
-
-		<?php
+<?php
 		include_once "includes/db_conn.php";
 		include_once "includes/function.inc.php";
 
@@ -36,7 +35,14 @@
 							<li><a href="signin.php">Account</a></li>
 						</ul>
 					</nav>
-							<img src="img/bag.png" alt="" width="30px" height="30px">
+							<a href="cart.php"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
+
+					<div class="search-box">
+						<input class="search-txt" type="text" name="" placeholder="Type to search">
+						<a class="search-btn" href="#">
+							<i class="fa fa-search"></i>
+						</a>
+					</div>
 							<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>	
 			</div>
@@ -55,8 +61,8 @@
 								<hr id="Indicator">
 						</div>
 								<form action="includes/login.php" method="POST" id="LoginForm">
-								<input type="text" placeholder="Username" name="username">
-								<input type="password" placeholder="Password" name="password">
+								<input type="text" placeholder="Username" required id="usname" name="usname">
+								<input type="password" placeholder="Password" required id="pword" name="pword">
 								<button type="submit" class="btn" name="Login"> Login </button>
 								<a href="">Forgot Password?</a>
 							</form>	
