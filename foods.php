@@ -20,12 +20,19 @@
 						<ul id="MenuItems">
 							<li><a href="index.php">Home</a></li>
 							<li><a href="products.php">Products</a></li>
-							<li><a href="">About us</a></li>
+							<li><a href="about.php">About us</a></li>
 							<li><a href="">Contacts</a></li>
-							<li><a href="">Account</a></li>
+							<li><a href="signin.php">Account</a></li>
 						</ul>
 					</nav>
-					<img src="img/bag.png" alt="" width="30px" height="30px">
+					<a href="cart.php"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
+
+					<div class="search-box">
+						<input class="search-txt" type="text" name="" placeholder="Type to search">
+						<a class="search-btn" href="#">
+							<i class="fa fa-search"></i>
+						</a>
+					</div>
 					<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>
 			</div>
@@ -67,7 +74,8 @@
 							<option>Garlic-smoky</option>
 						</select>
 						<input type="number" value="1">
-						<a href="" class="btn">Add to Cart</a>
+							<a href="" class="btn">Add to Cart</a>
+							<a href="" class="btn">Buy Now</a>
 						<h3>Product Details <i class="fa fa-indent"></i></h3>
 						<p>Longganisa de Guinobatan is a Filipino pork sausage originating from the town of Guinobatan in Albay, Philippines. It is a type of de recado longganisa.</p>
 						<p align="right"><i>(D'Juan Dela Cruz Specials)</i></p>
@@ -101,7 +109,9 @@
 							<h3>Product Details</h3>
 						<p>Pork Bicol Express is a type of Filipino spicy pork dish. Its main source of flavor is derived from shrimp paste, which is locally known as bagoong. </p>
 						<p><i>(Tan's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -118,7 +128,9 @@
 							<h3>Product Details</h3>
 						<p>Laing na Gabi or simply Laing is a type of Filipino vegetable dish. Taro leaves are sliced and dried for a few days before being cooked in coconut milk. </p>
 						<p><i>(Tan's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+						<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -135,7 +147,9 @@
 							<h3>Product Details</h3>
 						<p>Tilmok is a staple food in the Philippines' Bicol region due to abundance of crab and coconut. It is steamed crab meat with coconut. </p>
 						<p><i>(D'Juan Dela Cruz Specials)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+						<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -152,7 +166,9 @@
 							<h3>Product Details</h3>
 						<p>Pinangat is a famous native chili-hot delicacy of the town of Camalig. A vegetable dish cooked in coconut milk mixed with select spices and gabi.</p>
 						<p><i>(Aling Gelay Special Pinangat)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+						<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -174,17 +190,19 @@
 							<option>Small</option>
 						</select>
 						<input type="number" value="1">
-						<a href="" class="btn">Add to Cart</a>
+							<a href="" class="btn">Add to Cart</a>
+							<a href="" class="btn">Buy Now</a>
 						<h3>Product Details <i class="fa fa-indent"></i></h3>
 						<br>
 						<p>A sweet recipe that came from the province of Bicol Region. This recipe is a perfect dessert on its own, or as a spread on rice-based snacks (kakanin) or just plain bread. Made from rich coconut milk and raw sugar (Kalamay or Panutsa) reduced through a slow simmer.</p>
 						<p align="right"><i>(Aling Gelay Special Pinangat)</i></p>
 					</div>
-
+				</div>
 							<div class="small-container">
 					<div class="row row-2">
 						<h2>Related Products</h2>
-						
+						</div>
+					</div>
 				</div>
 
 				<div class="small-container">
@@ -201,7 +219,9 @@
 						</div><br>
 							<p>Php 30.00</p><br>
 							<p><i>(Gerald's Native Products)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -216,7 +236,10 @@
 						</div><br>
 							<p>Php 200.00</p><br>
 							<p><i>(Jenny's Special Puto)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
+						
 						</div>
 
 						<div class="col-4">
@@ -231,7 +254,10 @@
 						</div><br>
 							<p>Php 130.00</p><br>
 							<p><i>(Jenny's Special Puto)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
+						
 						</div>
 
 						<div class="col-4">
@@ -246,11 +272,14 @@
 						</div><br>
 							<p>Php 100.00</p><br>
 							<p><i>(Gomez's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
+						
 						</div>
 					</div>
 				</div>
-					
+				
 	</div>
 				</div>
 				</div>
@@ -261,9 +290,6 @@
 				</div>
 
 				<div class="small-container">
-					<!--<div class="col-2">
-						<img src="img/clothes.jpg" alt="" width="500px" height="500px">
-					</div>-->
 		
 				<div class="row">
 					<div class="col-4">
@@ -280,7 +306,9 @@
 							<h3>Product Details</h3>
 						<p>steamed rice cakes, traditionally made from slightly fermented rice dough (galapong) and is stuffed with coconut caramelized filling.</p>
 						<p><i>(Jenny's Special Puto)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -297,7 +325,9 @@
 							<h3>Product Details</h3>
 						<p> is a sweet rice cake from the Bicol (a type of kalamay dish). It is made of coconut milk, brown sugar, and glutinous rice. It is usually topped with latik.</p>
 						<p><i>(Jenny's Special Puto)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -314,7 +344,9 @@
 							<h3>Product Details</h3>
 						<p>The Suman Malagkit Recipe is a famous delicacy in the Bicol. The ingredients consist of sweet glutinous rice wrapped in banana leaves and served as meryenda.</p>
 						<p><i>(Gerald's Native Products)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -331,7 +363,9 @@
 							<h3>Product Details</h3>
 						<p>Suman sa ibos is a simple kakanin recipe.  This recipe requires glutinous rice and coconut milk and the wrap is made from buri or palm leaves.</p>
 						<p><i>(Gerald's Native Products)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 					</div>
 				</div>
