@@ -20,12 +20,19 @@
 						<ul id="MenuItems">
 							<li><a href="index.php">Home</a></li>
 							<li><a href="products.php">Products</a></li>
-							<li><a href="">About us</a></li>
+							<li><a href="about.php">About us</a></li>
 							<li><a href="">Contacts</a></li>
-							<li><a href="">Account</a></li>
+							<li><a href="signin.php">Account</a></li>
 						</ul>
 					</nav>
-					<img src="img/bag.png" alt="" width="30px" height="30px">
+					<a href="cart.php"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
+
+					<div class="search-box">
+						<input class="search-txt" type="text" name="" placeholder="Type to search">
+						<a class="search-btn" href="#">
+							<i class="fa fa-search"></i>
+						</a>
+					</div>
 					<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>
 			</div>
@@ -67,7 +74,8 @@
 							<option>White shirts</option>
 						</select>
 						<input type="number" value="1">
-						<a href="" class="btn">Add to Cart</a>
+							<a href="" class="btn">Add to Cart</a>
+							<a href="" class="btn">Buy Now</a>
 						<h3>Product Details <i class="fa fa-indent"></i></h3>
 						<p> personalize shirts and corporate give away using photographic printing, hand painting, embroidery, dye and digital printing.</p>
 						<p align="right"><i>(Ica's Store)</i></p>
@@ -78,7 +86,7 @@
 				<div class="small-container">
 					<div class="row row-2">
 						<h2>Related Products</h2>
-						<p>View More</p>
+						
 				</div>
 
 				<div class="small-container">
@@ -96,12 +104,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-							<p>Php 130.00</p>
+						</div><br>
+							<p>Php 130.00</p><br>
 							<h3>Product Details</h3>
 						<p>High-quality Bicol unisex kids t-shirts designed and sold by independent local artists around Albay. </p>
 						<p><i>(Cadag's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -113,12 +123,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star-o" aria-hidden="true"></i>
 							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 200.00</p>
+						</div><br>
+							<p>Php 200.00</p><br>
 							<h3>Product Details</h3>
 						<p>High-quality Bicol Oragon Jacket designed and sold by independent local artists around Albay.</p>
 						<p><i>(Tan's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -130,12 +142,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star-half-o" aria-hidden="true"></i>
 							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 130.00</p>
+						</div><br>
+							<p>Php 130.00</p><br>
 							<h3>Product Details</h3>
 						<p>High-quality Bicol magayon t-shirts designed and sold by independent local artists around Albay.  </p>
 						<p><i>(Cadag's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 
 						<div class="col-4">
@@ -147,12 +161,14 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-							<p>Php 100.00</p>
+						</div><br>
+							<p>Php 100.00</p><br.
 							<h3>Product Details</h3>
 						<p>High-quality Bicol unisex express shirts t-shirts designed and sold by independent local artists around Albay.</p>
 						<p><i>(Ica's Store)</i></p>
-							<a href="" class="btn">Add to Cart</a>
+							<input type="number" value="1">
+							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
+							<a href="" class="btn">Buy Now</a>
 						</div>
 					</div>
 				</div>
