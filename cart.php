@@ -19,9 +19,9 @@
 					<ul id="MenuItems">
 						<li><a href="index.php">Home</a></li>
 						<li><a href="products.php">Products</a></li>
-						<li><a href="">About us</a></li>
-						<li><a href="">Contacts</a></li>
-						<li><a href="">Account</a></li>
+						<li><a href="about.php">About us</a></li>
+						<li><a href="services.php">Services</a></li>
+						<li><a href="signin.php">Account</a></li>
 					</ul>
 				</nav>
 				<img src="img/bag.png" alt="" width="30px" height="30px">
