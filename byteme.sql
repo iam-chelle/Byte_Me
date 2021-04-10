@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2021 at 08:25 AM
+-- Generation Time: Apr 10, 2021 at 09:49 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `database`
+-- Database: `byteme`
 --
 
 -- --------------------------------------------------------
@@ -43,19 +43,21 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `category` (
   `cat_id` int(11) NOT NULL,
-  `cat_desc` varchar(128) NOT NULL
+  `cat_desc` varchar(128) NOT NULL,
+  `cat_img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`cat_id`, `cat_desc`) VALUES
-(1, 'Foods'),
-(2, 'Beverages'),
-(3, 'Crafts'),
-(4, 'Accessories'),
-(5, 'Shirts');
+INSERT INTO `category` (`cat_id`, `cat_desc`, `cat_img`) VALUES
+(1, 'Foods', ''),
+(2, 'Beverages', ''),
+(3, 'Crafts', ''),
+(4, 'Accessories', ''),
+(5, 'Shirts', ''),
+(6, 'test', '');
 
 -- --------------------------------------------------------
 
@@ -92,65 +94,67 @@ INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_age`, `cust_gender`, `cust
 CREATE TABLE `items` (
   `item_id` int(11) NOT NULL,
   `item_name` varchar(128) NOT NULL,
+  `item_details` text NOT NULL,
   `item_code` varchar(50) NOT NULL,
   `cat_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `item_price` int(100) NOT NULL,
-  `status` varchar(1) NOT NULL COMMENT 'D is for Discontinued and A is for Active'
+  `status` varchar(1) NOT NULL COMMENT 'D is for Discontinued and A is for Active',
+  `item_img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`item_id`, `item_name`, `item_code`, `cat_id`, `store_id`, `item_price`, `status`) VALUES
-(1, 'Guinobatan Longanisa', 'LGNSA', 1, 1, 50, 'A'),
-(2, 'Pilinuts', 'PNT', 1, 3, 180, 'A'),
-(3, 'Bamboo Basket', 'BMB', 3, 2, 350, 'A'),
-(4, 'Abaca Bag', 'ABCR', 3, 2, 599, 'A'),
-(5, 'Original Lambanog', 'LBNG', 2, 3, 150, 'A'),
-(6, 'Tuba', 'TBA', 2, 3, 130, 'A'),
-(7, 'Puto Macapuno', 'PMCP', 1, 4, 30, 'A'),
-(8, 'Puto Rice', 'PRC', 1, 4, 30, 'A'),
-(9, 'Pilinut Keychain', 'PKCH', 4, 5, 20, 'A'),
-(10, 'Local Bracelet', 'BRC', 4, 5, 30, 'A'),
-(11, 'Abaca Basket', 'ABC', 3, 5, 250, 'A'),
-(12, 'Camalig Special Pinangat', 'CPINGT', 1, 6, 100, 'A'),
-(13, 'Pili Jam', 'PLJ', 1, 6, 100, 'D'),
-(14, 'Special Bicol Express', 'BCX', 1, 7, 300, 'A'),
-(15, 'Special Laing', 'SLNG', 1, 7, 300, 'A'),
-(16, 'Original Tabak', 'OTK', 3, 8, 200, 'A'),
-(17, 'Ceramics', 'CRM', 3, 9, 350, 'A'),
-(18, 'Money Keeper', 'MNYK', 3, 9, 100, 'A'),
-(19, 'Refrigerator Magnet', 'RGM', 4, 10, 50, 'A'),
-(20, 'Bicol Shirt', 'BCLS', 5, 10, 250, 'A'),
-(21, 'Tilmok', 'TMK', 1, 1, 50, 'A'),
-(22, 'Special Biko', 'SPCB', 1, 4, 80, 'A'),
-(23, 'Suman Malagkit', 'SMMKT', 1, 2, 10, 'A'),
-(24, 'Suman Malagkit', 'SMMKT', 1, 2, 10, 'A'),
-(25, 'Pili Candy', 'PLCDY', 1, 2, 30, 'A'),
-(26, 'Pili Brownies', 'PLBWN', 1, 4, 200, 'A'),
-(27, 'Pili Cake', 'PLCKE', 1, 4, 130, 'A'),
-(28, 'Rice Wine', 'RCWNE', 2, 8, 300, 'A'),
-(29, 'Nipa Wine', 'NPWNE', 2, 9, 100, 'A'),
-(30, 'Buri Bag', 'BRBG', 3, 5, 100, 'A'),
-(31, 'Abaca Lampshade', 'ABLMP', 3, 10, 200, 'A'),
-(32, 'Sea Shell Lamp', 'SSLMP', 3, 10, 500, 'A'),
-(33, 'Ceramic Pot', 'CRMPT', 3, 9, 150, 'A'),
-(34, 'Ceramic Mugs', 'CRMMG', 3, 9, 150, 'A'),
-(35, 'Ceramic Pickel Jar', 'CRMPJ', 3, 9, 150, 'A'),
-(36, 'Ceramic Teacups', 'CRMTC', 3, 9, 150, 'A'),
-(37, 'Fan Keychain ', 'FKCH', 4, 5, 20, 'A'),
-(38, 'Sili Keychain ', 'SKCH', 4, 5, 20, 'A'),
-(39, 'Sili with Leaves Keychain ', 'SLKCH', 4, 5, 20, 'A'),
-(40, 'Oragon Unisex Jacket', 'ORNUNS', 5, 7, 200, 'A'),
-(41, 'Unisex Kids Shirt', 'UNKS', 5, 9, 130, 'A'),
-(42, 'Magayon Shirt', 'MGSRT', 5, 9, 130, 'A'),
-(43, 'Bicol Express Shirt', 'BCLXPRSSRT', 5, 10, 100, 'A'),
-(44, 'Dye Shirts', 'DYSRT', 5, 10, 200, 'A'),
-(45, 'Black Shirt', 'BLSRT', 5, 10, 200, 'A'),
-(46, 'Blue Shirt', 'BLUSRT', 5, 10, 200, 'A'),
-(47, 'White Shirt', 'BLSRT', 5, 10, 200, 'A');
+INSERT INTO `items` (`item_id`, `item_name`, `item_details`, `item_code`, `cat_id`, `store_id`, `item_price`, `status`, `item_img`) VALUES
+(1, 'Guinobatan Longanisa', '', 'LGNSA', 1, 1, 50, 'A', ''),
+(2, 'Pilinuts', '', 'PNT', 1, 3, 180, 'A', ''),
+(3, 'Bamboo Basket', '', 'BMB', 3, 2, 350, 'A', ''),
+(4, 'Abaca Bag', '', 'ABCR', 3, 2, 599, 'A', ''),
+(5, 'Original Lambanog', '', 'LBNG', 2, 3, 150, 'A', ''),
+(6, 'Tuba', '', 'TBA', 2, 3, 130, 'A', ''),
+(7, 'Puto Macapuno', '', 'PMCP', 1, 4, 30, 'A', ''),
+(8, 'Puto Rice', '', 'PRC', 1, 4, 30, 'A', ''),
+(9, 'Pilinut Keychain', '', 'PKCH', 4, 5, 20, 'A', ''),
+(10, 'Local Bracelet', '', 'BRC', 4, 5, 30, 'A', ''),
+(11, 'Abaca Basket', '', 'ABC', 3, 5, 250, 'A', ''),
+(12, 'Camalig Special Pinangat', '', 'CPINGT', 1, 6, 100, 'A', ''),
+(13, 'Pili Jam', '', 'PLJ', 1, 6, 100, 'D', ''),
+(14, 'Special Bicol Express', '', 'BCX', 1, 7, 300, 'A', ''),
+(15, 'Special Laing', '', 'SLNG', 1, 7, 300, 'A', ''),
+(16, 'Original Tabak', '', 'OTK', 3, 8, 200, 'A', ''),
+(17, 'Ceramics', '', 'CRM', 3, 9, 350, 'A', ''),
+(18, 'Money Keeper', '', 'MNYK', 3, 9, 100, 'A', ''),
+(19, 'Refrigerator Magnet', '', 'RGM', 4, 10, 50, 'A', ''),
+(20, 'Bicol Shirt', '', 'BCLS', 5, 10, 250, 'A', ''),
+(21, 'Tilmok', '', 'TMK', 1, 1, 50, 'A', ''),
+(22, 'Special Biko', '', 'SPCB', 1, 4, 80, 'A', ''),
+(23, 'Suman Malagkit', '', 'SMMKT', 1, 2, 10, 'A', ''),
+(24, 'Suman Malagkit', '', 'SMMKT', 1, 2, 10, 'A', ''),
+(25, 'Pili Candy', '', 'PLCDY', 1, 2, 30, 'A', ''),
+(26, 'Pili Brownies', '', 'PLBWN', 1, 4, 200, 'A', ''),
+(27, 'Pili Cake', '', 'PLCKE', 1, 4, 130, 'A', ''),
+(28, 'Rice Wine', '', 'RCWNE', 2, 8, 300, 'A', ''),
+(29, 'Nipa Wine', '', 'NPWNE', 2, 9, 100, 'A', ''),
+(30, 'Buri Bag', '', 'BRBG', 3, 5, 100, 'A', ''),
+(31, 'Abaca Lampshade', '', 'ABLMP', 3, 10, 200, 'A', ''),
+(32, 'Sea Shell Lamp', '', 'SSLMP', 3, 10, 500, 'A', ''),
+(33, 'Ceramic Pot', '', 'CRMPT', 3, 9, 150, 'A', ''),
+(34, 'Ceramic Mugs', '', 'CRMMG', 3, 9, 150, 'A', ''),
+(35, 'Ceramic Pickel Jar', '', 'CRMPJ', 3, 9, 150, 'A', ''),
+(36, 'Ceramic Teacups', '', 'CRMTC', 3, 9, 150, 'A', ''),
+(37, 'Fan Keychain ', '', 'FKCH', 4, 5, 20, 'A', ''),
+(38, 'Sili Keychain ', '', 'SKCH', 4, 5, 20, 'A', ''),
+(39, 'Sili with Leaves Keychain ', '', 'SLKCH', 4, 5, 20, 'A', ''),
+(40, 'Oragon Unisex Jacket', '', 'ORNUNS', 5, 7, 200, 'A', ''),
+(41, 'Unisex Kids Shirt', '', 'UNKS', 5, 9, 130, 'A', ''),
+(42, 'Magayon Shirt', '', 'MGSRT', 5, 9, 130, 'A', ''),
+(43, 'Bicol Express Shirt', '', 'BCLXPRSSRT', 5, 10, 100, 'A', ''),
+(44, 'Dye Shirts', '', 'DYSRT', 5, 10, 200, 'A', ''),
+(45, 'Black Shirt', '', 'BLSRT', 5, 10, 200, 'A', ''),
+(46, 'Blue Shirt', '', 'BLUSRT', 5, 10, 200, 'A', ''),
+(47, 'White Shirt', '', 'BLSRT', 5, 10, 200, 'A', '');
 
 -- --------------------------------------------------------
 
@@ -313,7 +317,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `customer`
