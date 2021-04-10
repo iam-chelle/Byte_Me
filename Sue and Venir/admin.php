@@ -1,11 +1,10 @@
 <?php
 session_start();
-echo $_SESSION['usertype'];
 if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
     switch($_SESSION['usertype']){
-        case 'A' : header("location: admin_page.php");
+        case 'A' : break;
+        case 'C' : header("location: customer.php");
                    break;
-        case 'C' : break;
     }
 }
 else{
@@ -20,7 +19,7 @@ else{
     <title>Customer Page</title>
 </head>
 <body>
-    <h1>This is a Customer Page</h1>
+    <h1>This is an Admin Page</h1>
     <a href="includes/logout.php">Logout</a>
 </body>
 </html>

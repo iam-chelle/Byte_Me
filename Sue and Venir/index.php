@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
     switch($_SESSION['usertype']){
         case 'A' : header("location: admin_page.php");
