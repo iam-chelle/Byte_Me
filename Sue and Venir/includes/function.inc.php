@@ -17,6 +17,24 @@
 			return true;
 		}
 
+		function addtocart($conn, $user_id, $item_id,$item_qty){
+			$err;
+			$sql = "INSERT INTO cart(item_id, user_id, qty)
+					VALUES (?,?,?);";
+			
+			$stmt = mysqli_stmt_init($conn);
+
+			if (!mysqli_stmt_prepare($stmt, $sql)){
+				return false;
+				exit();
+		}
+			mysqli_stmt_bind_param($stmt, "sss", $item_id, $user_id, $item_qty);
+			mysqli_stmt_execute($stmt);
+
+			mysqli_stmt_close($stmt);
+			return true;
+		}
+
 		function uidExists($conn, $username, $password){
 			$err;
 			$sql = "SELECT * FROM user
@@ -68,6 +86,12 @@ function getCatList($conn){
 
 }
 
+function getCartItemsPerUser($conn,$user_id){
+    
+    
+    
+}
+
 function getItemListPerCat($conn,$cat_id){
 			$err;
 			$sql = "SELECT i.item_id
@@ -90,7 +114,7 @@ function getItemListPerCat($conn,$cat_id){
 				header("location: products.php?error=stmtfailed");
 				exit();
 		    }
-            mysqli_stmt_bind_param($stmt, "s" ,$cat_id);
+            mysqli_stmt_bind_param($stmt, "s" ,$cat_id); 
 			mysqli_stmt_execute($stmt);
     
 			$resultData = mysqli_stmt_get_result($stmt);

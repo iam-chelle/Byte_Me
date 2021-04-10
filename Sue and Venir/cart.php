@@ -37,6 +37,7 @@
 				<th>Quantity</th>
 				<th>Sub Total</th>
 			</tr>
+			
 			<tr>
 				<td>
 					<div class="cart-info">
@@ -52,81 +53,7 @@
 				<td><input type="number" value="1"></td>
 				<td>Php 50.00</td>
 			</tr>
-			<tr>
-				<td>
-					<div class="cart-info">
-						<img src="img/l4.jpg">
-						<div>
-							<p>Puto Rice</p>
-							<small>Php 30.00</small>
-							<br>
-							<a href="">Remove</a>
-						</div>
-					</div>
-				</td>
-				<td><input type="number" value="1"></td>
-				<td>Php 30.00</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="cart-info">
-						<img src="img/l3.jpg">
-						<div>
-							<p>Puto Macapuno</p>
-							<small>Php 30.00</small>
-							<br>
-							<a href="">Remove</a>
-						</div>
-					</div>
-				</td>
-				<td><input type="number" value="1"></td>
-				<td>Php 30.00</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="cart-info">
-						<img src="img/l7.png">
-						<div>
-							<p>Bamboo Basket</p>
-							<small>Php 350.00</small>
-							<br>
-							<a href="">Remove</a>
-						</div>
-					</div>
-				</td>
-				<td><input type="number" value="1"></td>
-				<td>Php 350.00</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="cart-info">
-						<img src="img/f4.jpg">
-						<div>
-							<p>Abaca Bag</p>
-							<small>Php 599.00</small>
-							<br>
-							<a href="">Remove</a>
-						</div>
-					</div>
-				</td>
-				<td><input type="number" value="1"></td>
-				<td>Php 599.00</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="cart-info">
-						<img src="img/l6.jpg">
-						<div>
-							<p>Bicol Shirt</p>
-							<small>Php 250.00</small>
-							<br>
-							<a href="">Remove</a>
-						</div>
-					</div>
-				</td>
-				<td><input type="number" value="1"></td>
-				<td>Php 250.00</td>
-			</tr>
+			
 		</table>
 
 		<div class="total-price">

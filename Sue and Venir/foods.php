@@ -1,4 +1,18 @@
 <?php
+session_start();
+echo $_SESSION['usertype'];
+if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
+    switch($_SESSION['usertype']){
+        case 'A' : header("location: admin_page.php");
+                   break;
+        case 'C' : break;
+    }
+}
+else{
+    header("location: index.php");
+}
+
+
 include_once "includes/db_conn.php";
 include_once "includes/function.inc.php";
 ?>
@@ -69,9 +83,12 @@ include_once "includes/function.inc.php";
                                     <h3>Product Details</h3>
                                 <p><?php echo $val['item_details'];?></p>
                                 <p><i><?php echo $val['store_name'];?></i></p>
-                                <input type="number" value="1">
-                                    <a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
-                                    <a href="" class="btn">Buy Now</a>
+                                <form action="includes/processcart.php" method="post">
+                                    <input hidden type="text" name="user_id" value="<?php echo $_SESSION['userid']; ?>">
+                                    <input hidden type="text" name="item_id" value="<?php echo $val['item_id']; ?>">
+                                    Qty <input type="number" name="item_qty">
+                                    <button type="submit" name="addcart" class="btn"><i class="fa fa-shopping-cart"></i></button>
+                                </form>
                                 </div>
 
                         <?php  } ?>
