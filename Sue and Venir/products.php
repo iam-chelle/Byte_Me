@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+include_once "includes/db_conn.php";
+include_once "includes/function.inc.php";
+?>
+    <!DOCTYPE html>
 		<html lang="en">
 		<head>
 			<meta charset="utf-8">
@@ -43,58 +47,25 @@
 				<div class="small-container">
 					<div class=" row row-2">
 						<h2>All Products</h2>
-					
 					</div>
 				</div>
 				
 			
 				<div class="row">
-					<div class="col-5">
-						<a href="foods.php">
-						<img src="img/FR-F(1).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="foods.php">
-							</a>
-						<h4>FOOD CATEGORY</h4>
-					</div>
+<?php
+    $categories = getCatList($conn);
+    foreach($categories as $key => $val ){ ?>
+        <div class="col-5">
+		<a href="foods.php?category=<?php echo $val['cat_id']; ?>&catname=<?php echo $val['cat_desc']; ?>">
+		<img src="img/<?php echo $val['cat_img'];?>" alt="" width="200px" height="200px">
+		</a>
+		<h4><?php echo $val['cat_desc'];?></h4>
+	</div>
+        
+<?php }  ?>
+					
 
-					<div class="col-5">
-						<a href="beverages.php">
-						<img src="img/FR-B(3).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="beverages.php">
-							</a>
-						<h4>BEVERAGES CATEGORY</h4>
-					</div>
-
-					<div class="col-5">
-						<a href="crafts.php">
-						<img src="img/FR-C(4).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="crafts.php">
-							</a>
-						<h4>CRAFTS CATEGORY</h4>
-					</div>
-
-					<div class="col-5">
-						<a href="accessories.php">
-						<img src="img/FR-A(2).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="accessories.php">
-							</a>
-						<h4>ACCESSORIES CATEGORY</h4>
-					</div>
-
-					<div class="col-5">
-						<a href="shirts.php">
-						<img src="img/FR-S(5).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="shirts.php">
-							</a>
-						<h4>SHIRTS CATEGORY</h4>
-					</div>
-					</div>
-					<br><br>
+				</div>
 					<!--	
 					<div class="page-btn">
 					<span>1</span>
