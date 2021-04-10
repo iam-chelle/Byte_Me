@@ -1,10 +1,7 @@
 <?php
 		include_once "includes/db_conn.php";
 		include_once "includes/function.inc.php";
-
 		?>
-
-
 		<!DOCTYPE html>
 		<html lang="en">
 		<head>

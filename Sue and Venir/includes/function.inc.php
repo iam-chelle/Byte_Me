@@ -17,7 +17,7 @@
 			return true;
 		}
 
-		function addtocart($conn, $user_id, $item_id,$item_qty){
+function addtocart($conn, $user_id, $item_id,$item_qty){
 			$err;
 			$sql = "INSERT INTO cart(item_id, user_id, qty)
 					VALUES (?,?,?);";
@@ -27,13 +27,31 @@
 			if (!mysqli_stmt_prepare($stmt, $sql)){
 				return false;
 				exit();
-		}
+            }
 			mysqli_stmt_bind_param($stmt, "sss", $item_id, $user_id, $item_qty);
 			mysqli_stmt_execute($stmt);
 
 			mysqli_stmt_close($stmt);
 			return true;
-		}
+}
+
+function addNewItems($conn, $user_id, $item_id, $item_qty){
+			$err;
+			$sql = "INSERT INTO cart(item_id, user_id, qty)
+					VALUES (?,?,?);";
+			
+			$stmt = mysqli_stmt_init($conn);
+
+			if (!mysqli_stmt_prepare($stmt, $sql)){
+				return false;
+				exit();
+            }
+			mysqli_stmt_bind_param($stmt, "sss", $item_id, $user_id, $item_qty);
+			mysqli_stmt_execute($stmt);
+
+			mysqli_stmt_close($stmt);
+			return true;
+}
 
 		function uidExists($conn, $username, $password){
 			$err;
