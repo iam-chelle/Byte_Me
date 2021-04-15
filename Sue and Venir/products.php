@@ -56,7 +56,7 @@ include_once "includes/function.inc.php";
     $categories = getCatList($conn);
     foreach($categories as $key => $val ){ ?>
         <div class="col-5">
-		<a href="foods.php?category=<?php echo $val['cat_id']; ?>&catname=<?php echo $val['cat_desc']; ?>">
+		<a href="productlist.php?category=<?php echo $val['cat_id']; ?>&catname=<?php echo $val['cat_desc']; ?>">
 		<img src="img/<?php echo $val['cat_img'];?>" alt="" width="200px" height="200px">
 		</a>
 		<h4><?php echo $val['cat_desc'];?></h4>
