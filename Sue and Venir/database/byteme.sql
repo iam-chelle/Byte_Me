@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 03:19 PM
+-- Generation Time: Apr 19, 2021 at 03:47 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -106,7 +106,7 @@ CREATE TABLE `items` (
   `store_id` int(11) NOT NULL,
   `item_price` int(100) NOT NULL,
   `status` varchar(1) NOT NULL COMMENT 'D is for Discontinued and A is for Active',
-  `item_img` text NOT NULL,
+  `item_img` varchar(128) NOT NULL,
   `cat_display` int(1) NOT NULL DEFAULT 0 COMMENT '1 is for category display and 0 is not',
   `Featured` int(1) NOT NULL DEFAULT 0 COMMENT '1 for featured photo and 0 is for not',
   `latest_prod` date NOT NULL DEFAULT current_timestamp()
@@ -187,6 +187,13 @@ CREATE TABLE `order` (
   `status` varchar(1) NOT NULL COMMENT 'P is for Pending and D is for Delivered'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`order_id`, `cust_id`, `store_id`, `item_id`, `qtty`, `price`, `status`) VALUES
+(1, 2, 1, 4, 7, 50, 'P');
+
 -- --------------------------------------------------------
 
 --
@@ -218,7 +225,7 @@ CREATE TABLE `store` (
   `store_owner` varchar(128) NOT NULL,
   `sell_age` int(3) NOT NULL,
   `sell_gender` varchar(1) NOT NULL,
-  `add_id` int(1) NOT NULL,
+  `store_add` varchar(128) NOT NULL,
   `sell_contact` varchar(11) NOT NULL,
   `sell_email` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -227,41 +234,17 @@ CREATE TABLE `store` (
 -- Dumping data for table `store`
 --
 
-INSERT INTO `store` (`store_id`, `store_name`, `store_owner`, `sell_age`, `sell_gender`, `add_id`, `sell_contact`, `sell_email`) VALUES
-(1, 'D Juan Dela Cruz Specials', 'Juan dela Cruz', 45, 'M', 1, '09759213248', 'Djuandelacruzspecials@gmail.com'),
-(2, 'Geralds Native Products', 'Gierald Baretto', 32, 'M', 1, '9356789218', 'gieraldsnative@gmail.com'),
-(3, 'Gomez Store', 'Daniel Gomez', 30, 'M', 2, '9456789908', 'gomezdaniel@gmail.com'),
-(4, 'Jennys Special Puto', 'Jenny Domingo', 40, 'F', 2, '9367898765', 'jennysputo012@gmail.com'),
-(5, 'Rochelles Accesories', 'Rochelle Diaz', 54, 'F', 3, '9503483902', 'rochellediaz@gmail.com'),
-(6, 'Aling Gelay Special Pinangat', 'Angelica Salvacion', 56, 'F', 4, '9267854121', 'alinggelay@gmail.com'),
-(7, 'Tans Store', 'Tan Conrad', 25, 'M', 4, '9756754555', 'Tinconrad@gmail.com'),
-(8, 'Best of Tabacco', 'Matalo Manalo', 55, 'M', 5, '9456665333', 'TabaccoPH@gmail.com'),
-(9, 'Cadags Store', 'Ezekiel Cadag', 24, 'M', 6, '9365478888', 'ezekielcadag@gmail.com'),
-(10, 'Icas Shop', 'Ica Kun', 36, 'F', 7, '9112233445', 'Icakun@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `storeadd`
---
-
-CREATE TABLE `storeadd` (
-  `add_id` int(11) NOT NULL,
-  `add_desc` varchar(56) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `storeadd`
---
-
-INSERT INTO `storeadd` (`add_id`, `add_desc`) VALUES
-(1, 'Guinobatan'),
-(2, 'Ligao'),
-(3, 'Daraga'),
-(4, 'Camalig'),
-(5, 'Tabacco'),
-(6, 'Tiwi'),
-(7, 'Legazpi');
+INSERT INTO `store` (`store_id`, `store_name`, `store_owner`, `sell_age`, `sell_gender`, `store_add`, `sell_contact`, `sell_email`) VALUES
+(1, 'D Juan Dela Cruz Specials', 'Juan dela Cruz', 45, 'M', 'Guinobatan', '09759213248', 'Djuandelacruzspecials@gmail.com'),
+(2, 'Geralds Native Products', 'Gierald Baretto', 32, 'M', 'Guinobatan', '9356789218', 'gieraldsnative@gmail.com'),
+(3, 'Gomez Store', 'Daniel Gomez', 30, 'M', 'Ligao', '9456789908', 'gomezdaniel@gmail.com'),
+(4, 'Jennys Special Puto', 'Jenny Domingo', 40, 'F', 'Ligao', '9367898765', 'jennysputo012@gmail.com'),
+(5, 'Rochelles Accesories', 'Rochelle Diaz', 54, 'F', 'Daraga', '9503483902', 'rochellediaz@gmail.com'),
+(6, 'Aling Gelay Special Pinangat', 'Angelica Salvacion', 56, 'F', 'Camalig', '9267854121', 'alinggelay@gmail.com'),
+(7, 'Tans Store', 'Tan Conrad', 25, 'M', 'Camalig', '9756754555', 'Tinconrad@gmail.com'),
+(8, 'Best of Tabacco', 'Matalo Manalo', 55, 'M', 'Tabaco', '9456665333', 'TabaccoPH@gmail.com'),
+(9, 'Cadags Store', 'Ezekiel Cadag', 24, 'M', 'Tiwi', '9365478888', 'ezekielcadag@gmail.com'),
+(10, 'Icas Shop', 'Ica Kun', 36, 'F', 'Legazpi', '9112233445', 'Icakun@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -282,7 +265,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `usertype`) VALUES
 (1, 'Admin', 'Admin123', 'A'),
-(2, 'Ton', 'tonton', 'C'),
+(2, 'Ton', 'tonton', 'A'),
 (3, 'Jep', 'Es9uerra', 'C');
 
 --
@@ -332,12 +315,6 @@ ALTER TABLE `store`
   ADD PRIMARY KEY (`store_id`);
 
 --
--- Indexes for table `storeadd`
---
-ALTER TABLE `storeadd`
-  ADD PRIMARY KEY (`add_id`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -375,7 +352,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `promotion`
@@ -390,12 +367,6 @@ ALTER TABLE `store`
   MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `storeadd`
---
-ALTER TABLE `storeadd`
-  MODIFY `add_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -405,4 +376,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
