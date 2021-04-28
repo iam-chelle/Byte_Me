@@ -13,7 +13,7 @@
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
-	$dbname = "practice";
+	$dbname = "byteme";
 
 					
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -23,14 +23,14 @@
 	}
 
 				
-	$sql = "INSERT INTO `cust_tbl` (cust_name, cust_age, cust_gender, cust_add, cust_contact, cust_email)
+	$sql = "INSERT INTO `customer` (cust_name, cust_age, cust_gender, cust_add, cust_contact, cust_email)
 	VALUES ( '${fullname}', '${age}', '${gender}', '${address}', '${contact}', '${email}' );"; //<- use single quote on php variables inside an SQL. 
-	$sql2 = "INSERT INTO `user_tbl` (username, password)
+	$sql2 = "INSERT INTO `user` (username, password)
 	VALUES ('${usname}', '${pasword}');"; 
 
 	if (mysqli_query($conn, $sql)) {
 	// if no error. Then new record created.
-	echo "New record created successfully";
+		 header("location: ../signin.php");
 	} else {
 	// else then error will show up.
 	echo "Error: " . $sql . mysqli_error($conn);
@@ -38,7 +38,6 @@
 
 	if (mysqli_query($conn, $sql2)) {
 	// if no error. Then new record created.
-	echo "<br>New record created successfully";
 	} else {
 	// else then error will show up.
 	echo "Error: " . $sql2 . mysqli_error($conn);
