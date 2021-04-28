@@ -1,4 +1,4 @@
-		<?php
+				<?php
 		function createUser($conn, $username, $password){
 			$err;
 			$sql = "INSERT INTO user(username, password)
@@ -87,9 +87,34 @@ function getCatList($conn){
 }
 
 function getCartItemsPerUser($conn,$user_id){
+    		$err;
+    		$sql = "SELECT   i.item_name
+    						,i.item_price
+    						,i.item_img
+    						,c.qty 
+    			FROM items i 
+    			JOIN cart c
+				ON  (i.item_id = c.item_id)
+				WHERE c.user_id = ?
+				AND c.status = 'P' ";
+
+			$stmt = mysqli_stmt_init($conn);
+
+			if (!mysqli_stmt_prepare($stmt, $sql)){
+				header("location: products.php?error=stmtfailed");
+				exit();
+		    }
+            mysqli_stmt_bind_param($stmt, "s" ,$user_id); 
+			mysqli_stmt_execute($stmt);
     
-    
-    
+			$resultData = mysqli_stmt_get_result($stmt);
+            $arr = array();
+			while($row = mysqli_fetch_assoc($resultData)){
+					array_push($arr,$row);
+			}
+            return $arr;
+			mysql_stmt_close($stmt);
+
 }
 
 function getItemListPerCat($conn,$cat_id){
@@ -125,4 +150,36 @@ function getItemListPerCat($conn,$cat_id){
             return $arr;
 			mysql_stmt_close($stmt);
 
+}	
+			
+
+
+	function getCartSummary($conn, $user_id){
+    $sql_cart_list = "SELECT c.user_id
+                           , sum(i.item_price * c.qty) total_price
+                           , sum(c.qty) total_qty
+                        FROM cart c
+                        JOIN items i
+                          ON c.item_id = i.item_id
+                       WHERE c.user_id = ? 
+                          AND c.status = 'P'
+                    GROUP BY c.user_id; ";
+                      $stmt=mysqli_stmt_init($conn);
+    
+                    if (!mysqli_stmt_prepare($stmt, $sql_cart_list)){
+                        header("location: index.php?error=stmtfailed");
+                        exit();
+                    }
+        mysqli_stmt_bind_param($stmt, "s" ,$user_id);
+        mysqli_stmt_execute($stmt);
+        $resultData = mysqli_stmt_get_result($stmt);
+        $arr = array();            //initialize an empty array
+        if($row = mysqli_fetch_assoc($resultData)){
+            array_push($arr,$row);            
+        }
+        return $arr;               //this is the return value
+        mysqli_stmt_close($stmt);  //close the mysqli_statement
 }
+
+
+		
