@@ -12,10 +12,7 @@
         else{
             header("location: index.php");
         }
-    
-
-
-
+  
 
 include_once "includes/db_conn.php";
 include_once "includes/function.inc.php";
@@ -53,6 +50,34 @@ include_once "includes/function.inc.php";
                             <li><a href="products.php">Products</a></li>
                             <li><a href="about.php">About us</a></li>
                             <li><a href="services.php">Services</a></li>
+                            <li class="nav-item">
+                            <a href="cart.php" class="nav-link no-border-orange"
+                           data-bs-toggle="collapse" 
+                               role="button"  
+                               aria-expanded="false"  
+                               aria-controls="cartList"
+                    >
+                        <i class="fa fa-cart-plus"></i> Cart  
+                        <?php 
+                        $sql_cart_count = "SELECT COUNT(*) cartcount FROM `cart` WHERE status = 'P' AND user_id = ?;";
+                        $stmt=mysqli_stmt_init($conn);
+    
+                    if (!mysqli_stmt_prepare($stmt, $sql_cart_count)){
+                        header("location: index.php?error=stmtfailed");
+                        exit();
+                    }
+                        mysqli_stmt_bind_param($stmt, "s" ,$_SESSION['userid']);
+                        mysqli_stmt_execute($stmt);
+
+                        $resultData = mysqli_stmt_get_result($stmt);
+
+                        if($row = mysqli_fetch_assoc($resultData)){ ?>
+                            <span class="badge bg-danger"><?php echo $row['cartcount']; ?></span>
+                        <?php }
+                       
+                        ?>
+                        
+                    </a>
                         </ul>
                     </nav>
                 </div>
