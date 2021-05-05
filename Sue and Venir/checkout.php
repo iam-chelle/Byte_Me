@@ -119,17 +119,14 @@
         while($row = mysqli_fetch_assoc($resultData)){ 
             echo "<table class='table'>";
         ?>
-
-            <form action="includes/processorder.php" method="Post"> 
-                                    <input hidden type="text" name="order_number" value= "<?php echo ($rand['order_number'])?>">
-                                    <input hidden type="text" name="cust_id" value="<echo ($row['cust_id'])">
-
-                                    <input hidden type="text" name="store_id" value="< echo ($row['store_id'])">
-                                    <input hidden type="text" name="item_id" value= "<?php echo $row['item_id'];?>">
+             
+           <form action="includes/processorder.php" method="Post">
+                                    <input hidden type="text" name="order_number" value="<?php echo $rand['order_number'];?>">
+                                    <input hidden type="text" name="cust_id" value="<?php echo $row['cust_id'];?>">
+                                    <input hidden type="text" name="store_id" value="<?php echo $row['store_id'];?>">
+                                    <input hidden type="text" name="item_id" value= "<?php echo $row['item_id']; ?>">
                                     <input hidden type="text" name="qty" value="<?php echo $row['qty'];?>">
-                       
-        
-     
+
       <tr>
          <?php echo "<td>"  ?>
         
@@ -137,6 +134,7 @@
          echo rand(1, 100);
         ?>
 
+           
            
         </td>
           <?php echo "</td>"  ?>
@@ -176,8 +174,7 @@
                     echo "<br>";                    
         ?> 
 
-
-           
+   
             <br>
             <div class="form-group">
             <textarea name="address" class="form-control" rows="3" cols="10" placeholder="Enter Delivery Address Here..."></textarea>
