@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2021 at 04:44 AM
+-- Generation Time: May 05, 2021 at 05:44 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -31,30 +31,21 @@ CREATE TABLE `cart` (
   `id` int(10) NOT NULL,
   `item_id` int(10) NOT NULL,
   `user_id` int(10) DEFAULT NULL,
+  `store_id` int(11) NOT NULL,
   `qty` int(10) NOT NULL,
-  `status` varchar(10) NOT NULL DEFAULT 'P' COMMENT 'P is for Pending and D is for Delivered'
+  `status` varchar(10) NOT NULL DEFAULT 'P' COMMENT 'P is for Pending and C is for Checkout'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `item_id`, `user_id`, `qty`, `status`) VALUES
-(2, 47, 3, 20, 'P'),
-(4, 1, 3, 5, 'P'),
-(6, 19, 4, 2, 'P'),
-(15, 19, 2, 5, 'P'),
-(16, 30, 2, 1, 'P'),
-(17, 7, 2, 8, 'P'),
-(18, 46, 2, 5, 'P'),
-(19, 58, 2, 4, 'P'),
-(20, 29, 3, 6, 'P'),
-(21, 38, 2, 99, 'P'),
-(22, 5, 6, 10, 'P'),
-(23, 6, 6, 10, 'P'),
-(24, 28, 6, 15, 'P'),
-(25, 29, 6, 20, 'P'),
-(26, 58, 6, 25, 'P');
+INSERT INTO `cart` (`id`, `item_id`, `user_id`, `store_id`, `qty`, `status`) VALUES
+(1, 18, 3, 9, 100, 'P'),
+(2, 34, 3, 9, 4, 'P'),
+(3, 31, 2, 10, 1, 'P'),
+(4, 38, 2, 5, 1, 'P'),
+(5, 47, 2, 10, 1, 'P');
 
 -- --------------------------------------------------------
 
@@ -95,19 +86,19 @@ CREATE TABLE `customer` (
   `cust_contact` varchar(15) NOT NULL,
   `cust_email` varchar(128) NOT NULL,
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `user_id` int(11) NOT NULL
+  `Delivery_Add` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_age`, `cust_gender`, `cust_add`, `cust_contact`, `cust_email`, `status`, `user_id`) VALUES
-(1, 'Aries Orlina', 21, 'X', 'Jovellar Albay', '09993399389', 'ariesopeniano.orlina@bicol-u.edu.ph', 'A', 0),
-(2, 'Jeff Esguerra', 21, 'M', 'Albay Bicol', '09759213248', 'jeffsolano.esguerra@bicol-u.edu.ph', 'A', 0),
-(3, 'Myra Esguerra', 23, 'F', 'Bataan', '09759213248', 'myra@gmail.com', 'A', 0),
-(4, 'Aries Orlina', 21, 'X', 'Rizal', '09759213248', 'ariesopeniano.orlina@bicol-u.edu.ph', 'A', 0),
-(5, 'Rochelle Balmas', 22, 'F', 'Sto Domingo', '09759213248', 'rochellediaz.balmas@bicol-u.edu.ph', 'A', 0);
+INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_age`, `cust_gender`, `cust_add`, `cust_contact`, `cust_email`, `status`, `Delivery_Add`) VALUES
+(1, 'Aries Orlina', 21, 'X', 'Jovellar Albay', '09993399389', 'ariesopeniano.orlina@bicol-u.edu.ph', 'A', '0'),
+(2, 'Jeff Esguerra', 21, 'M', 'Albay Bicol', '09759213248', 'jeffsolano.esguerra@bicol-u.edu.ph', 'A', '0'),
+(3, 'Myra Esguerra', 23, 'F', 'Bataan', '09759213248', 'myra@gmail.com', 'A', '0'),
+(4, 'Aries Orlina', 21, 'X', 'Rizal', '09759213248', 'ariesopeniano.orlina@bicol-u.edu.ph', 'A', '0'),
+(5, 'Rochelle Balmas', 22, 'F', 'Sto Domingo', '09759213248', 'rochellediaz.balmas@bicol-u.edu.ph', 'A', '0');
 
 -- --------------------------------------------------------
 
@@ -193,18 +184,32 @@ INSERT INTO `items` (`item_id`, `item_name`, `item_details`, `item_code`, `cat_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
+  `order_number` int(11) NOT NULL,
   `cust_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
-  `qtty` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `status` varchar(1) NOT NULL COMMENT 'P is for Pending and D is for Delivered'
+  `store_id` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `order_date` date NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(2) NOT NULL DEFAULT 'P' COMMENT 'P is for Pending and D is for Delivered'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_number`, `cust_id`, `item_id`, `store_id`, `qty`, `order_date`, `status`) VALUES
+(26, 0, 0, 0, 0, 0, '2021-05-04', 'P'),
+(27, 0, 0, 0, 0, 0, '2021-05-04', 'P'),
+(28, 0, 0, 0, 0, 0, '2021-05-04', 'P'),
+(29, 0, 0, 0, 10, 1, '2021-05-04', 'P'),
+(30, 0, 0, 0, 0, 1, '2021-05-04', 'P'),
+(31, 0, 0, 0, 0, 0, '2021-05-04', 'P'),
+(32, 0, 0, 0, 10, 1, '2021-05-04', 'P');
 
 -- --------------------------------------------------------
 
@@ -336,9 +341,9 @@ ALTER TABLE `items`
   ADD PRIMARY KEY (`item_id`);
 
 --
--- Indexes for table `order`
+-- Indexes for table `orders`
 --
-ALTER TABLE `order`
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`);
 
 --
@@ -373,7 +378,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -394,10 +399,10 @@ ALTER TABLE `items`
   MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT for table `orders`
 --
-ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `promotion`
@@ -427,3 +432,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
