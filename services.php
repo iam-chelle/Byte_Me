@@ -1,4 +1,8 @@
-				<!DOCTYPE html>
+	<?php
+	session_start();
+	include_once "includes/db_conn.php";
+	?>
+		<!DOCTYPE html>
 		<html lang="en">
 		<head>
 			<meta charset="utf-8">
@@ -23,9 +27,40 @@
 							<li><a href="about.php">About us</a></li>
 							<li><a href="">Services</a></li>
 							<li><a href="signin.php">Account</a></li>
+								<li class="nav-item">
+                    <a href="cart.php" class="nav-link no-border-orange"
+                           data-bs-toggle="collapse" 
+                               role="button"  
+                               aria-expanded="false"  
+                               aria-controls="cartList"
+                    >
+                        <i class="fa fa-cart-plus"></i> Cart  
+                         <?php 
+                        $sql_cart_count = "SELECT COUNT(*) cartcount FROM `cart` WHERE status = 'P' AND user_id = ?;";
+                        $stmt=mysqli_stmt_init($conn);
+    
+                    if (!mysqli_stmt_prepare($stmt, $sql_cart_count)){
+                        header("location: index.php?error=stmtfailed");
+                        exit();
+                    }
+                        mysqli_stmt_bind_param($stmt, "s" ,$_SESSION['userid']);
+                        mysqli_stmt_execute($stmt);
+
+                        $resultData = mysqli_stmt_get_result($stmt);
+
+                        if($row = mysqli_fetch_assoc($resultData)){ ?>
+                            <span class="badge bg-danger"><?php echo $row['cartcount']; ?></span>
+                        <?php }
+                       
+                        ?>
+                        
+                    </a>
+                        
+                    </a>
 						</ul>
 					</nav>
-							<a href="cart.php"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
+						</ul>
+					</nav>
 
 					<div class="search-box">
 						<input class="search-txt" type="text" name="" placeholder="Type to search">
@@ -41,7 +76,7 @@
 				<h1 class="services-title">Our Services</h1>
 			</div>	
 			<div class="services1">
-				<div class="card">
+				<div class="card1">
 					<i class="icon fa fa-globe"></i>
 					<h1 class="services-title1"> Web Development</h1>
 					<div class="content">
@@ -52,7 +87,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card1">
 					<i class="icon fa fa-edit"></i>
 					<h1 class="services-title1">Graphic Designing</h1>
 					<div class="content">
@@ -63,7 +98,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card1">
 					<i class="icon fa fa-briefcase"></i>
 					<h1 class="services-title1">Digital Branding</h1>
 					<div class="content">

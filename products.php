@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+session_start();
+include_once "includes/db_conn.php";
+include_once "includes/function.inc.php";
+?>
+    <!DOCTYPE html>
 		<html lang="en">
 		<head>
 			<meta charset="utf-8">
@@ -23,10 +28,37 @@
 							<li><a href="about.php">About us</a></li>
 							<li><a href="services.php">Services</a></li>
 							<li><a href="signin.php">Account</a></li>
+								<li class="nav-item">
+                    <a href="cart.php" class="nav-link no-border-orange"
+                           data-bs-toggle="collapse" 
+                               role="button"  
+                               aria-expanded="false"  
+                               aria-controls="cartList"
+                    >
+                        <i class="fa fa-cart-plus"></i> Cart  
+                        <?php 
+                        $sql_cart_count = "SELECT COUNT(*) cartcount FROM `cart` WHERE status = 'P' AND user_id = ?;";
+                        $stmt=mysqli_stmt_init($conn);
+    
+                    if (!mysqli_stmt_prepare($stmt, $sql_cart_count)){
+                        header("location: index.php?error=stmtfailed");
+                        exit();
+                    }
+                        mysqli_stmt_bind_param($stmt, "s" ,$_SESSION['userid']);
+                        mysqli_stmt_execute($stmt);
+
+                        $resultData = mysqli_stmt_get_result($stmt);
+
+                        if($row = mysqli_fetch_assoc($resultData)){ ?>
+                            <span class="badge bg-danger"><?php echo $row['cartcount']; ?></span>
+                        <?php }
+                       
+                        ?>
+                        
+                    </a>
 						</ul>
 					</nav>
-					<a href="cart.php"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
-					
+				
 					<div class="search-box">
 						<input class="search-txt" type="text" name="" placeholder="Type to search">
 						<a class="search-btn" href="#">
@@ -43,70 +75,30 @@
 				<div class="small-container">
 					<div class=" row row-2">
 						<h2>All Products</h2>
-					
 					</div>
 				</div>
 				
 			
 				<div class="row">
-					<div class="col-5">
-						<a href="foods.php">
-						<img src="img/FR-F(1).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="foods.php">
-							</a>
-						<h4>FOOD CATEGORY</h4>
-					</div>
 
-					<div class="col-5">
-						<a href="beverages.php">
-						<img src="img/FR-B(3).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="beverages.php">
-							</a>
-						<h4>BEVERAGES CATEGORY</h4>
-					</div>
-
-					<div class="col-5">
-						<a href="crafts.php">
-						<img src="img/FR-C(4).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="crafts.php">
-							</a>
-						<h4>CRAFTS CATEGORY</h4>
-					</div>
-
-					<div class="col-5">
-						<a href="accessories.php">
-						<img src="img/FR-A(2).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="accessories.php">
-							</a>
-						<h4>ACCESSORIES CATEGORY</h4>
-					</div>
-
-					<div class="col-5">
-						<a href="shirts.php">
-						<img src="img/FR-S(5).jpg" alt="" width="200px" height="200px">
-						</a>
-							<a href="shirts.php">
-							</a>
-						<h4>SHIRTS CATEGORY</h4>
-					</div>
-					</div>
-					<br><br>
-					<!--	
-					<div class="page-btn">
-					<span>1</span>
-					<span>2</span>
-					<span>3</span>
-					<span>4</span>
-					<span>5</span>
-					<span>&#8594;</span>
-				</div> -->
+<?php
+    $categories = getCatList($conn);
+    foreach($categories as $key => $val ){ ?>
+        <div class="col-5">
+		<a href="itemlist.php?category=<?php echo $val['cat_id']; ?>&catname=<?php echo $val['cat_desc']; ?>">
+		<img src="img/<?php echo $val['cat_img'];?>" alt="" width="200px" height="200px">
+		</a>
+		<h4><?php echo $val['cat_desc'];?></h4>
+	</div>
+        
+<?php }  ?>
 					
 
-<!--END-->
+				</div>
+					
+				<p><br><br></p>
+				<p><br><br></p>
+				<p><br><br></p>
 				
 				<div class="footer">
 				<div class="container">

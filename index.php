@@ -1,14 +1,20 @@
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<link rel="stylesheet" type="text/css" href="css/style.css">
-			<title>Sue and Venir</title>
-			<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		</head>
-		<body>
+	<?php
+session_start();
+	include_once "includes/db_conn.php";
+	?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Sue and Venir</title>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--<link rel="stylesheet" href="styles/bootstrap-337.min.css">-->
+
+</head>
+<body>
 			<div class="header">
 
 			<div class="container">
@@ -23,9 +29,38 @@
 							<li><a href="about.php">About us</a></li>
 							<li><a href="services.php">Services</a></li>
 							<li><a href="signin.php">Account</a></li>
+							<li class="nav-item">
+                    <a href="cart.php" class="nav-link no-border-orange"
+                           data-bs-toggle="collapse" 
+                               role="button"  
+                               aria-expanded="false"  
+                               aria-controls="cartList"
+                    >
+                        <i class="fa fa-cart-plus"></i> Cart  
+                         <?php 
+                        $sql_cart_count = "SELECT COUNT(*) cartcount FROM `cart` WHERE status = 'P' AND user_id = ?;";
+                        $stmt=mysqli_stmt_init($conn);
+    
+                    if (!mysqli_stmt_prepare($stmt, $sql_cart_count)){
+                        header("location: index.php?error=stmtfailed");
+                        exit();
+                    }
+                        mysqli_stmt_bind_param($stmt, "s" ,$_SESSION['userid']);
+                        mysqli_stmt_execute($stmt);
+
+                        $resultData = mysqli_stmt_get_result($stmt);
+
+                        if($row = mysqli_fetch_assoc($resultData)){ ?>
+                            <span class="badge bg-danger"><?php echo $row['cartcount']; ?></span>
+                        <?php }
+                       
+                        ?>
+                        
+                    </a>
+                        
+                    </a>
 						</ul>
 					</nav>
-					<a href="cart.html"><img src="img/bag.png" alt="" width="30px" height="30px"></a>
 					
 					<div class="search-box">
 						<input class="search-txt" type="text" name="" placeholder="Type to search">
@@ -50,185 +85,128 @@
 				</div>	
 			</div>
 		</div>
+		
 		<div class="small-container">
 			<div class="categories">
+
 				<div class="row">
-					<div class="col-3">
-						<img src="img/bicol.jpg" alt="" width="200px" height="200px">
-					 </div>
-					<div class="col-3">
-						<img src="img/abaca.jpg" alt="" width="200px" height="200px">
-					 </div>
-					<div class="col-3">
-						<img src="img/Lambanog.jpg" alt="" width="200px" height="200px">
-					 </div>
-					<div class="col-3">
-						<img src="img/clothes.jpg" alt="" width="200px" height="200px">
-					 </div>
-					<div class="col-3">
-						<img src="img/sea.jpg" alt="" width="200px" height="200px">
-					 </div>
-				</div>
-			</div>
-		</div>
 
-		<div class="small-container">
-			<h2 class="title">Featured Products</h2>
+					<?php
+							
+						  $sql = "SELECT * FROM `items` WHERE `cat_display`= 1;";
+									$stmt = mysqli_stmt_init($conn);
+									 if (!mysqli_stmt_prepare($stmt, $sql)){
+									header("location: index.php?error=stmtfailed");
+										exit();
+									 }
+									
+								
+									  mysqli_stmt_execute($stmt);
+									$resultData = mysqli_stmt_get_result($stmt);
+									$arr = array();
+									while($row = mysqli_fetch_assoc($resultData)){
+									array_push($arr,$row);
+								}
+		                          foreach ($arr as $key => $val) {
+		                          		
+		                          		echo "<tr>";
+		          						echo "<td><img style = 'width: 200px; height:200px'  src=".'img/'.$val['item_img']." /></td>";
+		                            	echo "</tr>";
+		                            	
+		                            }
+		                            ?>
+	
+	</div>
+	</div>	
+</div>
+<br>
+<div class="small-container">
+		<h2 class="title">Featured Products</h2>
+			<div class="categories">
+
 				<div class="row">
-					<div class="col-4">
-						<a href="">
-						<img src="img/f1.png" alt="" width="200px" height="200px">
-						</a>
-						<a href="product-details.html">
 
-						</a>
-						<h4>Guinobatan Longganisa</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-							<p>Php 50.00</p>
-						</div>
-						<div class="col-4">
-						<img src="img/f2.jpg" alt="" width="200px" height="200px">
-						<h4>Tiwi Ceramics</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 350.00</p>
-						</div>
-						<div class="col-4">
-						<img src="img/f4.jpg" alt="" width="200px" height="200px">
-						<h4>Abaca Bag</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-half-o" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 599.00</p>
-						</div>
-						<div class="col-4">
-						<img src="img/f5.jpg" alt="" width="200px" height="200px">
-						<h4>Camalig Pinangat</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-half-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 80.00</p>
-						</div>
-					</div>
-					<h2 class="title">Latest Products</h2>
-						<div class="row">
-					<div class="col-4">
-						<img src="img/l1.jpg" alt="" width="200px" height="200px">
-						<h4>Raw Pilinuts</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-						</div>
-							<p>Php 100.00</p>
-						</div>
-						<div class="col-4">
-						<img src="img/foods.jpg" alt="" width="200px" height="200px">
-						<h4>Bicol Express</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-half-o" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 300.00</p>
-						</div>
-						<div class="col-4">
-						<img src="img/l3.jpg" alt="" width="200px" height="200px">
-						<h4>Puto Macapuno</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-half-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 30.00</p>
-						</div>
-						<div class="col-4">
-						<img src="img/l5.jpg" alt="" width="200px" height="200px">
-						<h4>Pure Tuba</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 130.00</p>
-						</div>
+					<?php
+							
+						  $sql = "SELECT * FROM `items` WHERE `Featured`= 1;";
+									$stmt = mysqli_stmt_init($conn);
+									 if (!mysqli_stmt_prepare($stmt, $sql)){
+									header("location: index.php?error=stmtfailed");
+										exit();
+									 }
+									
+								
+									  mysqli_stmt_execute($stmt);
+									$resultData = mysqli_stmt_get_result($stmt);
+									$arr = array();
+									while($row = mysqli_fetch_assoc($resultData)){
+									array_push($arr,$row);
+								}
+		                          foreach ($arr as $key => $val) {
+		                          		
+		                          		echo "<tr>";
+		          						echo "<td><img style = 'width: 200px; height:200px'  src=".'img/'.$val['item_img']." /></td>";
+		                            	echo "</tr>";
+		                            	
+		                            }
+		                            ?>
+	
+	</div>
+	</div>	
+</div>
 
-						<div class="col-4">
-						<img src="img/l4.jpg" alt="" width="200px" height="200px">
-						<h4>Puto Rice</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-half-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 30.00</p>
-						</div>
-						<div class="col-4">
-						<img src="img/l6.jpg" alt="" width="200px" height="200px">
-						<h4>Bicol Shirt</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 250.00</p>
-						</div>
-						<div class="col-4">
-						<img src="img/l7.png" alt="" width="200px" height="200px">
-						<h4>Bamboo Basket</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-							<i class="fa fa-star-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 350.00</p>
-						</div>
-						<div class="col-4">
-						<img src="img/l8.jpg" alt="" width="200px" height="200px">
-						<h4>Sili Keychain</h4>
-						<div class="rating">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-half-o" aria-hidden="true"></i>
-						</div>
-							<p>Php 25.00</p>
-						</div>
-					</div>
+<br>
+<div class="small-container">
+		<h2 class="title">Latest Products</h2>
+			<div class="categories">
+
+				<div class="row">
+
+					<?php
+							
+						  $sql = "SELECT * FROM `items` WHERE `latest_prod`>= '2021-04-12';";
+									$stmt = mysqli_stmt_init($conn);
+									 if (!mysqli_stmt_prepare($stmt, $sql)){
+									header("location: index.php?error=stmtfailed");
+										exit();
+									 }
+									
+								
+									  mysqli_stmt_execute($stmt);
+									$resultData = mysqli_stmt_get_result($stmt);
+									$arr = array();
+									while($row = mysqli_fetch_assoc($resultData)){
+									array_push($arr,$row);
+								}
+		                          foreach ($arr as $key => $val) {
+		                          		
+		                          		echo "<tr>";
+		          						echo "<td><img style = 'width: 200px; height:200px'  src=".'img/'.$val['item_img']." /></td>";
+		                            	echo "</tr>";
+		                            	
+		                            }
+		                            ?>
+	
+	</div>
+	</div>	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+			
 				</div>
 				<div class="offer">
 					<div class="small-container">
@@ -291,6 +269,10 @@
 								</div>
 								<img src="img/user3.png" alt="" width="50px" height="50px">
 								<h3>Roseanne Park</h3>
+							
+
+
+
 							</div>
 						</div>
 					</div>
@@ -348,4 +330,8 @@
 
 
 	</body>
+	<?php mysqli_close($conn);?>
 </html>
+
+
+
