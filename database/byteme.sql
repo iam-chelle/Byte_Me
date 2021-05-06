@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2021 at 07:57 AM
+-- Generation Time: May 06, 2021 at 11:38 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -29,25 +29,33 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart` (
   `id` int(10) NOT NULL,
+  `order_number` varchar(64) NOT NULL,
   `item_id` int(10) NOT NULL,
   `user_id` int(10) DEFAULT NULL,
   `store_id` int(11) NOT NULL,
   `qty` int(10) NOT NULL,
-  `status` varchar(10) NOT NULL DEFAULT 'P' COMMENT 'P is for Pending and C is for Checkout'
+  `status` varchar(10) NOT NULL DEFAULT 'P' COMMENT 'P is for Pending and C is for Checkout',
+  `cart_status` varchar(1) NOT NULL DEFAULT 'P',
+  `checkout_status` varchar(1) NOT NULL DEFAULT 'X'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `item_id`, `user_id`, `store_id`, `qty`, `status`) VALUES
-(1, 18, 3, 9, 100, 'P'),
-(2, 34, 3, 9, 4, 'P'),
-(3, 31, 2, 10, 1, 'P'),
-(4, 38, 2, 5, 2, 'P'),
-(5, 47, 2, 10, 3, 'P'),
-(7, 15, 11, 7, 3, 'P'),
-(8, 6, 11, 3, 1, 'P');
+INSERT INTO `cart` (`id`, `order_number`, `item_id`, `user_id`, `store_id`, `qty`, `status`, `cart_status`, `checkout_status`) VALUES
+(1, '', 18, 3, 9, 100, 'P', 'P', 'X'),
+(2, '', 34, 3, 9, 4, 'P', 'P', 'X'),
+(3, '', 31, 2, 10, 1, 'P', 'P', 'X'),
+(4, '', 38, 2, 5, 2, 'P', 'P', 'X'),
+(5, '', 47, 2, 10, 3, 'P', 'P', 'X'),
+(7, '', 15, 11, 7, 3, 'P', 'P', 'X'),
+(8, '', 6, 11, 3, 1, 'P', 'P', 'X'),
+(13, '295466093b6eb0de02', 2, 12, 3, 4, 'C', 'C', 'I'),
+(14, '460016093b71190afd', 11, 12, 5, 7, 'C', 'C', 'I'),
+(16, '156656093b7d24f1d8', 37, 12, 5, 6, 'C', 'C', 'I'),
+(17, '156656093b7d24f1d8', 37, 12, 5, 6, 'C', 'C', 'I'),
+(18, '156656093b7d24f1d8', 11, 12, 5, 6, 'C', 'C', 'I');
 
 -- --------------------------------------------------------
 
@@ -101,7 +109,8 @@ INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_age`, `cust_gender`, `cust
 (3, 'Myra Esguerra', 23, 'F', 'Bataan', '09759213248', 'myra@gmail.com', 'A', '0'),
 (4, 'Aries Orlina', 21, 'X', 'Rizal', '09759213248', 'ariesopeniano.orlina@bicol-u.edu.ph', 'A', '0'),
 (5, 'Rochelle Balmas', 22, 'F', 'Sto Domingo', '09759213248', 'rochellediaz.balmas@bicol-u.edu.ph', 'A', '0'),
-(6, 'Jef Ry', 22, 'M', 'Jovellar Albay Bicol', '09759213248', 'sguerajef7@gmail.com', 'A', NULL);
+(6, 'Jef Ry', 22, 'M', 'Jovellar Albay Bicol', '09759213248', 'sguerajef7@gmail.com', 'A', NULL),
+(7, 'Reymar Llagas', 20, 'M', 'napo', '123123', 'rallagas@bicol-u.edu.ph', 'A', NULL);
 
 -- --------------------------------------------------------
 
@@ -192,11 +201,10 @@ INSERT INTO `items` (`item_id`, `item_name`, `item_details`, `item_code`, `cat_i
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
-  `order_number` int(11) NOT NULL,
+  `order_number` varchar(64) NOT NULL,
   `cust_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
+  `total_qty` int(11) NOT NULL,
+  `total_amount` double NOT NULL,
   `order_date` date NOT NULL DEFAULT current_timestamp(),
   `status` varchar(2) NOT NULL DEFAULT 'P' COMMENT 'P is for Pending and D is for Delivered'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -205,18 +213,10 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `order_number`, `cust_id`, `item_id`, `store_id`, `qty`, `order_date`, `status`) VALUES
-(26, 0, 0, 0, 0, 0, '2021-05-04', 'P'),
-(27, 0, 0, 0, 0, 0, '2021-05-04', 'P'),
-(28, 0, 0, 0, 0, 0, '2021-05-04', 'P'),
-(29, 0, 0, 0, 10, 1, '2021-05-04', 'P'),
-(30, 0, 0, 0, 0, 1, '2021-05-04', 'P'),
-(31, 0, 0, 0, 0, 0, '2021-05-04', 'P'),
-(32, 0, 0, 0, 10, 1, '2021-05-04', 'P'),
-(33, 0, 0, 0, 10, 1, '2021-05-04', 'P'),
-(34, 0, 0, 0, 10, 1, '2021-05-04', 'P'),
-(35, 0, 0, 0, 10, 1, '2021-05-04', 'P'),
-(36, 0, 0, 0, 10, 3, '2021-05-04', 'P');
+INSERT INTO `orders` (`order_id`, `order_number`, `cust_id`, `total_qty`, `total_amount`, `order_date`, `status`) VALUES
+(74, '295466093b6eb0de02', 12, 4, 720, '2021-05-06', 'C'),
+(75, '460016093b71190afd', 12, 7, 1750, '2021-05-06', 'C'),
+(76, '156656093b7d24f1d8', 12, 18, 1740, '2021-05-06', 'C');
 
 -- --------------------------------------------------------
 
@@ -316,7 +316,8 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `usertype`) VALUES
 (2, 'Ton', 'tonton', 'C'),
 (5, 'tern', '1234', 'C'),
 (10, 'jeff', '1234', 'C'),
-(11, 'Jep', '1234', 'C');
+(11, 'Jep', '1234', 'C'),
+(12, 'pogi', '123123', 'C');
 
 --
 -- Indexes for dumped tables
@@ -384,7 +385,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -396,7 +397,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -408,7 +409,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `promotion`
@@ -432,7 +433,7 @@ ALTER TABLE `storeadd`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
