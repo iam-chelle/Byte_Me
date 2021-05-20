@@ -45,17 +45,19 @@
 
 
 		<ul>
-		  <li><a href="http://localhost/SueandVenirAdmin/">Home</a></li>
-		  <li><a href="http://localhost/SueandVenirAdmin/products/index.php">Products</a></li>
-		  <li><a href="#">Category</a></li>
-		  <li><a href="#">Store Owners</a></li>
-		  <li><a href="#">Customers</a></li>
-		  <li><a href="#">Orders</a></li>
-		  <li><a href="#">Logout</a></li>
+		  <li><a href="byte/admin/index.php">Home</a></li>
+		  <li><a href="items/index.php">Products</a></li>
+		  <li><a href="category/index.php">Category</a></li>
+		   <li><a href="store_add/index.php">Store Location</a></li>
+		  <li><a href="store/index.php">Store Owners</a></li>
+		  <li><a href="customer/index.php">Customers</a></li>
+		  <li><a href="orders/index.php">Orders</a></li>
+		  <li><a href="../report.php">Sales Report</a></li>
+		  <li><a href="../logout.php">Logout</a></li>
 		</ul>
 
 <div class="container">
-	<h1 class="page-header text-center">Dashboard</h1>
+	<h1 class="page-header text-center">Users Dashboard</h1>
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
 			<div class="row">
@@ -82,19 +84,17 @@
 				}
 			?>
 			</div>
-			<div class="row">
-				<a href="#addnew" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> New</a>
-				
-			</div>
 			<div class="height10">
 			</div>
 			<div class="row">
 				<table id="myTable" class="table table-bordered table-striped">
 					<thead>
 						<th>User ID</th>
+						<th>User Referrence Number</th>
 						<th>Username</th>
 						<th>Password</th>
 						<th>Usertype</th>
+						<th>Status</th>
 						<th>Action</th>
 					</thead>
 					<tbody>
@@ -108,15 +108,18 @@
 								echo 
 								"<tr>
 									<td>".$row['user_id']."</td>
+									<td>".$row['user_ref_num']."</td>
 									<td>".$row['username']."</td>
 									<td>".$row['password']."</td>
 									<td>".$row['usertype']."</td>
+									<td>".$row['status']."</td>
 									<td>
-										<a href='#edit_".$row['user_id']."' class='btn btn-success btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> Edit</a>
-										<a href='#delete_".$row['user_id']."' class='btn btn-danger btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-trash'></span> Delete</a>
+										<a href='#edit_".$row['user_id']."' class='btn btn-success btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> Update</a>
+			
 									</td>
 								</tr>";
 								include('edit_delete_modal.php');
+								
 							}
 
 						?>
@@ -126,7 +129,6 @@
 		</div>
 	</div>
 </div>
-<?php include('add_modal.php') ?>
 
 
 <script src="jquery/jquery.min.js"></script>

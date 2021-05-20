@@ -4,10 +4,8 @@
 
 	if(isset($_POST['edit'])){
 		$user_id = $_POST['user_id'];
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		$usertype = $_POST['usertype'];
-		$sql = "UPDATE user SET username = '$username', password = '$password', usertype = '$usertype' WHERE user_id = '$user_id'";
+		$status = $_POST['status'];
+		$sql = "UPDATE user SET  status = '$status' WHERE user_id = '$user_id'";
 
 		//use for MySQLi OOP
 		if($conn->query($sql)){
@@ -29,6 +27,6 @@
 		$_SESSION['error'] = 'Select member to edit first';
 	}
 
-	header('location: admin.php');
+	header('location: index.php');
 
 ?>
