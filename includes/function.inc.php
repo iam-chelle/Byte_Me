@@ -41,7 +41,8 @@
 			$err;
 			$sql = "SELECT * FROM user
 					WHERE username = ?
-					  AND password =?;";
+					  AND password =?
+					  AND status = 'Active';";
 			
 			$stmt = mysqli_stmt_init($conn);
 
@@ -68,7 +69,7 @@
 
 function getCatList($conn){
 			$err;
-			$sql = "SELECT * FROM category";
+			$sql = "SELECT * FROM category WHERE status = 'Active'";
 			
 			$stmt = mysqli_stmt_init($conn);
 
@@ -134,7 +135,9 @@ function getItemListPerCat($conn,$cat_id){
                      JOIN store s
                        on (i.store_id = s.store_id)
                     WHERE i.cat_id = ?
-                      AND i.status = 'A' ";
+                      AND i.status = 'A' 
+                      AND i.status = 'A'
+                      AND s.status = 'Active'";
 			
 			$stmt = mysqli_stmt_init($conn);
 
@@ -157,16 +160,19 @@ function getItemListPerCat($conn,$cat_id){
 			
 
 
+	
+
 	function getCartSummary($conn, $user_id){
     $sql_cart_list = "SELECT c.user_id
-
                            , sum(i.item_price * c.qty) total_price
                            , sum(c.qty) total_qty
+                    
                         FROM cart c
                         JOIN items i
                           ON c.item_id = i.item_id
                        WHERE c.user_id = ? 
                           AND c.status = 'P'
+                          AND c.cart_status = 'C'
                     GROUP BY c.user_id; ";
                       $stmt=mysqli_stmt_init($conn);
     
@@ -186,4 +192,80 @@ function getItemListPerCat($conn,$cat_id){
 }
 	
 
-	
+	function pwdmatch($pasword, $confirmPassword) {
+    $result;
+    if($pasword !== $confirmPassword) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function cidExists($conn, $usname){
+	$sql = "SELECT * FROM user WHERE username = ?;";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../register.php?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "s", $usname);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+         return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+ }
+
+
+	function cmailExists($conn, $email){
+		$sql = "SELECT * FROM customer WHERE cust_email = ?;";
+		$stmt = mysqli_stmt_init($conn);
+		if (!mysqli_stmt_prepare($stmt, $sql)) {
+			header("location: ../register.php?error=stmtfailed");
+			exit();
+		}
+		mysqli_stmt_bind_param($stmt, "s", $email);
+	    mysqli_stmt_execute($stmt);
+
+	    $resultData = mysqli_stmt_get_result($stmt);
+
+	    if ($row = mysqli_fetch_assoc($resultData)) {
+	         return $row;
+	    } else {
+	        $result = false;
+	        return $result;
+	    }
+
+	    mysqli_stmt_close($stmt);
+	}
+
+	function phoneExists($conn, $cnumber){
+		$sql = "SELECT * FROM customer WHERE cust_contact = ?;";
+		$stmt = mysqli_stmt_init($conn);
+		if (!mysqli_stmt_prepare($stmt, $sql)) {
+			header("location: ../register.php?error=stmtfailed");
+			exit();
+		}
+		mysqli_stmt_bind_param($stmt, "s", $cnumber);
+	    mysqli_stmt_execute($stmt);
+
+	    $resultData = mysqli_stmt_get_result($stmt);
+
+	    if ($row = mysqli_fetch_assoc($resultData)) {
+	         return $row;
+	    } else {
+	        $result = false;
+	        return $result;
+	    }
+
+	    mysqli_stmt_close($stmt);
+	}
+

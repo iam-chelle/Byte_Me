@@ -9,7 +9,8 @@ include "db_conn.php";
 include "function.inc.php";
     
 if(addtocart($conn, $user_id, $item_id,$store_id,$item_qty) !== false){
-    header("location: ../cart.php");
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
+exit;
 }
     
 }

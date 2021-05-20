@@ -1,3 +1,6 @@
+   
+
+
 <div class="panel panel-default sidebar-menu"><!--  panel panel-default sidebar-menu Begin  -->
     
     <div class="panel-heading"><!--  panel-heading  Begin  -->
@@ -11,8 +14,41 @@
         <br/>
         
         <h3 align="center" class="panel-title"><!--  panel-title  Begin  -->
+     
+              <?php
+            $sql =  "SELECT     u.user_id
+                              , u.username
+                              , c.cust_add
+                              , c.cust_email
+                              , c.cust_contact
+                              FROM `user` u
+                              JOIN customer c
+                              ON(c.user_ref_num = u.user_ref_num)
+                              WHERE u.user_id = ?";
+                               $stmt=mysqli_stmt_init($conn);
+                        //check if statement is valid
+                         if (!mysqli_stmt_prepare($stmt, $sql)){
+                            $err = "Statement Failed";
+                            echo $err;
+
+
+                        }mysqli_stmt_bind_param($stmt, "s" , $_SESSION['userid']);   
+                        mysqli_stmt_execute($stmt);
+                             
+                            
+                            $resultData = mysqli_stmt_get_result($stmt);
+                            if(!empty($resultData)){
+                                while($row = mysqli_fetch_assoc($resultData)){ ?>
+                                     <h4 align="center"><b> Hi <?php echo $row['username'];?> </b></h4>
+                                  
+                                      <p><b>Address: </b><?php echo $row['cust_add'];?> </p>
+                                      <p><b>Email:</b> <?php echo $row['cust_email'];?> </p>
+                                      <p><b>Contact #:</b> <?php echo $row['cust_contact'];?> </p>
+<?php }  ?>
+                               <?php }  ?>
+
             
-            Name: Miss Erika
+       
             
         </h3><!--  panel-title  Finish -->
         
@@ -26,52 +62,22 @@
                 
                 <a href="customer.php?cust_order">
                     
-                    <i class="fa fa-list"></i> My Orders
+                    <i class="fa fa-list"></i> Current Orders
+                    
+                </a>
+                
+          
+            </li>
+              <li class="<?php if(isset($_GET['order_history']))?>">
+                
+                 <a href="customer.php?order_history">
+                    
+                    <i class="fa fa-list"></i> Received Orders
                     
                 </a>
                 
             </li>
-            
-            <li class="<?php if(isset($_GET['pay_offline'])){ echo "active"; } ?>">
-                
-                <a href="my_account.php?pay_offline">
-                    
-                    <i class="fa fa-bolt"></i> Pay Offline
-                    
-                </a>
-                
-            </li>
-            
-            <li class="<?php if(isset($_GET['edit_account'])){ echo "active"; } ?>">
-                
-                <a href="my_account.php?edit_account">
-                    
-                    <i class="fa fa-pencil"></i> Edit Account
-                    
-                </a>
-                
-            </li>
-            
-            <li class="<?php if(isset($_GET['change_pass'])){ echo "active"; } ?>">
-                
-                <a href="my_account.php?change_pass">
-                    
-                    <i class="fa fa-user"></i> Change Password
-                    
-                </a>
-                
-            </li>
-            
-            <li class="<?php if(isset($_GET['delete_account'])){ echo "active"; } ?>">
-                
-                <a href="my_account.php?delete_account">
-                    
-                    <i class="fa fa-trash-o"></i> Delete Account
-                    
-                </a>
-                
-            </li>
-            
+        
             <li>
                 
                 <a href="includes/logout.php">
