@@ -11,7 +11,16 @@ session_start();
 	<title>Sue and Venir</title>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!--<link rel="stylesheet" href="styles/bootstrap-337.min.css">-->
+	<style>
+		.col-4{
+		flex-basis: 25%;
+		padding: 10px;
+		min-width: 200px;
+		margin-bottom: 50px;
+		transition: transform 0.5s;
+	}
+		}
+	</style>
 
 </head>
 <body>
@@ -62,13 +71,6 @@ session_start();
 						</ul>
 					</nav>
 					
-					<div class="search-box">
-						<input class="search-txt" type="text" name="" placeholder="Type to search">
-						<a class="search-btn" href="#">
-							<i class="fa fa-search"></i>
-						</a>
-					</div>
-
 					<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>
 				<br>
@@ -77,7 +79,7 @@ session_start();
 					<h2>Express it, <br>Show it OR Gift it</h2>
 					<p>Right location and right gifting ideas for a lifetime memorabila<br>Featuring Albayano's souvenir prides at a low cost
 					prices and convenient delivery access</p>
-					<a href="" class="btn">Explore Now &#8594;</a>
+					<a href="products.php" class="btn">Explore Now &#8594;</a>
 					</div>
 					<div class="col-2">
 						<img src="img/main.png">
@@ -93,7 +95,7 @@ session_start();
 
 					<?php
 							
-						  $sql = "SELECT * FROM `items` WHERE `cat_display`= 1;";
+						  $sql = "SELECT * FROM `items` WHERE `cat_display`= 1";
 									$stmt = mysqli_stmt_init($conn);
 									 if (!mysqli_stmt_prepare($stmt, $sql)){
 									header("location: index.php?error=stmtfailed");
@@ -121,14 +123,11 @@ session_start();
 </div>
 <br>
 <div class="small-container">
-		<h2 class="title">Featured Products</h2>
-			<div class="categories">
-
-				<div class="row">
-
-					<?php
+		<h2 class="title">Latest Products</h2>
+						<div class="row">
+							<?php
 							
-						  $sql = "SELECT * FROM `items` WHERE `Featured`= 1;";
+						  $sql = "SELECT * FROM `items` WHERE `Featured`=1;";
 									$stmt = mysqli_stmt_init($conn);
 									 if (!mysqli_stmt_prepare($stmt, $sql)){
 									header("location: index.php?error=stmtfailed");
@@ -142,19 +141,46 @@ session_start();
 									while($row = mysqli_fetch_assoc($resultData)){
 									array_push($arr,$row);
 								}
-		                          foreach ($arr as $key => $val) {
-		                          		
-		                          		echo "<tr>";
-		          						echo "<td><img style = 'width: 200px; height:200px'  src=".'img/'.$val['item_img']." /></td>";
-		                            	echo "</tr>";
-		                            	
-		                            }
-		                            ?>
-	
-	</div>
-	</div>	
-</div>
-
+		                          foreach ($arr as $key => $val) {?>
+		                          		<div class="col-4">
+		                          			 <img src="img/<?php echo $val['item_img'];?>"" alt="" width="200px" height="200px">
+		                          			 <h3><?php echo $val['item_name'];?></h3>
+		                          			<p>Php <?php  echo number_format($val['item_price'],2); ?> </p>
+		                          		</div>
+		                           <?php }   ?>
+								</div>	       
+						<br>
+					<br>
+			<h2 class="title">Latest Products</h2>
+						<div class="row">
+							<?php
+							
+						  $sql = "SELECT * FROM `items` WHERE `latest_prod`>= '2021-04-12'
+						  								AND status = 'A';";
+									$stmt = mysqli_stmt_init($conn);
+									 if (!mysqli_stmt_prepare($stmt, $sql)){
+									header("location: index.php?error=stmtfailed");
+										exit();
+									 }
+									
+								
+									  mysqli_stmt_execute($stmt);
+									$resultData = mysqli_stmt_get_result($stmt);
+									$arr = array();
+									while($row = mysqli_fetch_assoc($resultData)){
+									array_push($arr,$row);
+								}
+		                          foreach ($arr as $key => $val) {?>
+		                          		<div class="col-4">
+		                          			 <img src="img/<?php echo $val['item_img'];?>"" alt="" width="200px" height="200px">
+		                          			 <h3><?php echo $val['item_name'];?></h3>
+		                          			<p>Php <?php  echo number_format($val['item_price'],2); ?> </p>
+		                          		</div>	
+		                         <?php }   ?>
+						</div>
+					</div>	
+					
+<!-- 
 <br>
 <div class="small-container">
 		<h2 class="title">Latest Products</h2>
@@ -194,7 +220,7 @@ session_start();
 
 
 
-
+ -->
 
 
 
@@ -206,111 +232,114 @@ session_start();
 
 
 				
-			
-				</div>
+				<?php
+						  $sql = "SELECT * FROM `promotion` WHERE `status`= 'A';";
+									$stmt = mysqli_stmt_init($conn);
+									 if (!mysqli_stmt_prepare($stmt, $sql)){
+									header("location: index.php?error=stmtfailed");
+										exit();
+									 }
+									
+								
+									  mysqli_stmt_execute($stmt);
+									$resultData = mysqli_stmt_get_result($stmt);
+									$arr = array();
+									while($row = mysqli_fetch_assoc($resultData)){
+									array_push($arr,$row);
+								}
+		       						foreach ($arr as $key => $val) { ?>
+				
 				<div class="offer">
 					<div class="small-container">
 						<div class="row">
 						<div class="col-2">
-							<img src="img/sueimg.png" alt="" class="offer-img">
+							<img src="img/<?php echo $val['promo_img'];?>" alt="" class="offer-img">
 						</div>
 						<div class="col-2">
 							<p>Exclusively Available</p>
-							<h1> Customized Abaca Bag</h1>
+							<h1><?php echo $val['promo_name'];?></h1>
 							<small>
-								<p>These Woven bag is made of abaca. Straight from Bicol Perfect for any occasion Sling type/Shoulder </p>
+								<p><?php echo $val['description'];?></p>
 							</small>
-							<a href="" class="btn"><i class="fa fa-shopping-cart"></i></a>
-							<a href="#" class="btn">Buy Now &#8594;</a>
+							<a href="products.php" class="btn"><i class="fa fa-shopping-cart">  Shop Now</i></a>
 						</div>
 					</div>
 				</div>
 			</div>
+			<?php }   ?>
 
-	<!--INAYOS KO'COPY MO YUNG MGA LAMAN NG <p></p> for blog-->
+
+
 					<div class="testimonial">
 						<div class="small-container">
 							<div class="row">
-								<div class="col-3">
-									<i class="fa fa-quote-left"></i>
-									<p>A fantastic shop for all your souvenir needs. Friendly delivery staffs. Excellent prices and plenty of choice. One of the best souvenir website.</p>
-									<div class="rating">
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star-half-o" aria-hidden="true"></i>
-								</div>
-								<img src="img/user1.jpg" alt="" width="50px" height="50px">
-								<h3>Rowan Atkinson</h3>
-							</div>
-							<div class="col-3">
-									<i class="fa fa-quote-left"></i>
-									<p>Very amazing e-commerce site. Tons of variety of bicol souvenirs at really good prices. I bought t-shirts, dishes etc and got a good deal. Recommended.</p>
-									<div class="rating">
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-								</div>
-								<img src="img/user2.jpg" alt="" width="50px" height="50px">
-								<h3>Sue Ramirez</h3>
-							</div>
-							<div class="col-3">
-									<i class="fa fa-quote-left"></i>
-									<p>This is one of the best site to buy souvenirs. There are plenty in internet but I found nice souvenirs gifts here. Surely buy again here during my visit in Albay.</p>
-									<div class="rating">
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star-half-o" aria-hidden="true"></i>
-									<i class="fa fa-star-o" aria-hidden="true"></i>
-								</div>
-								<img src="img/user3.png" alt="" width="50px" height="50px">
-								<h3>Roseanne Park</h3>
+		
+			<?php
+						  $sql = "SELECT * FROM `review` WHERE `status`= 'A';";
+									$stmt = mysqli_stmt_init($conn);
+									 if (!mysqli_stmt_prepare($stmt, $sql)){
+									header("location: index.php?error=stmtfailed");
+										exit();
+									 }
+									
+								
+									  mysqli_stmt_execute($stmt);
+									$resultData = mysqli_stmt_get_result($stmt);
+									$arr = array();
+									while($row = mysqli_fetch_assoc($resultData)){
+									array_push($arr,$row);
+								}
+		       						foreach ($arr as $key => $val) { ?>
+				
 							
-
-
-
+								<div class="col-3">
+									<td><i class="fa fa-quote-left"></i>
+									<p><?php echo $val['user_rev'];?></p>
+								<img src="img/<?php echo $val['img'];?>" alt="" width="50px" height="50px">
+								<h3><?php echo $val['user'];?></h3></td>
 							</div>
+							<?php }   ?>
 						</div>
 					</div>
 				</div>
+
+
+							
 			<div class="footer">
-				<div class="container">
-					<div class="row">
-						<div class="footer-col-1">
-							<h3>Contact Us</h3>
-							<p> Download App for Android</p>
-						</div>
-						<div class="footer-cl-2">
-							<img src="img/logo1.png" width="100px" height="100px">
-						
-							</div>
-						<div class="footer-col-3">
-							<h3>Useful Links</h3>
-							<ul>
-								<li>Coupons</li>
-								<li>Blog Post</li>
-								<li>Return Policy</li>
-								<li>Join Affiliates</li>
-							</ul>
-						</div>
-						<div class="footer-col-4">
-							<h3>Follow Us</h3>
-							<ul>
-								<li>Facebook</li>
-								<li>Twitter</li>
-								<li>Instagram</li>
-								<li>Youtube</li>
-							</ul>
-					</div>
+		<div class="container">
+			<div class="row">			
+				<div class="footer-col">
+					<img src="img/logo1.png" alt="" height="120px" width="120px">
 				</div>
-				<hr>
-				<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
+				<div class="footer-col1">
+					<h2 align="center">Pasalubong for Every Juan</h2>
+						<div align="center" class="social">
+							<a href="https://facebook.com/"><i class='fa fa-facebook fa-2x'>  </i></a>
+							
+							<a href="https://twitter.com/"><i class="fa fa-twitter fa-2x">		</i></a>
+							
+							<a href="https://instagram.com/"><i class="fa fa-instagram fa-2x">  </i></a>
+
+							<a href="https://snapchat.com/"><i class="fa fa-snapchat fa-2x">  </i></a>
+						</div>
+				</div>
+				<div class="footer-col1">
+					<h3><b>Contact Us:</b></h3>
+					<b>Address:</b> Centro Orriental Polangui Albay</li>
+					<br>
+					<b>Email:</b> sueandvenirph@bicol-u.edu.ph</li>
+					<br>
+					<b>Contact:</b> 09759213248 / 09156392652</li>
+					
+
+
+						</div>
+				</div>
 			</div>
+			<hr>
+			<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
 		</div>
+	</div>
 
 		<script>
 			var MenuItems = document.getElementById("MenuItems");
@@ -328,10 +357,5 @@ session_start();
 
 		</script>
 
-
 	</body>
-	<?php mysqli_close($conn);?>
 </html>
-
-
-

@@ -1,8 +1,14 @@
-<?php
-session_start();
-include_once "includes/db_conn.php";
-include_once "includes/function.inc.php";
-?>
+	<?php
+	session_start();
+	include_once "includes/db_conn.php";
+	include_once "includes/function.inc.php";
+
+	$searchkey="";
+	if (isset($_GET['searchkey'])){
+	    $searchkey=htmlentities($_GET['searchkey']);  
+		echo $searchkey;
+	}
+	?>
     <!DOCTYPE html>
 		<html lang="en">
 		<head>
@@ -12,6 +18,54 @@ include_once "includes/function.inc.php";
 			<title>Sue and Venir</title>
 			<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+			<style>
+				.container .search-txt{
+					border: 0;
+					outline: none;
+					color: #7690da;
+				}
+				.search_wrap{
+					width: 400px;
+					margin: 1px auto;	
+				}
+				.search_wrap .search_box{
+					position: relative;
+					width: 400px;
+					height: 30px;
+				}
+
+				.search_wrap .search_box .search-txt{
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					padding: 1px 20px;
+					font-size: 18px;
+				}
+
+				.search_wrap .search_box .btn{
+					position: absolute;
+					top: 0;
+					right: 0;
+					width: 60px;
+					height: 100%;
+					background: #7690da;
+					z-index: 2;
+					cursor: pointer;
+				}
+				.search_wrap .search_box .btn:hover{
+					background: #708bd2;
+				}
+				.search_wrap .search_box .btn.btn_common .fa{
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					color: #fff;
+					font-size: 20px;
+				}
+			</style>
 		</head>
 		<body>
 			<div class="header">
@@ -58,19 +112,20 @@ include_once "includes/function.inc.php";
                     </a>
 						</ul>
 					</nav>
-				
-					<div class="search-box">
-						<input class="search-txt" type="text" name="" placeholder="Type to search">
-						<a class="search-btn" href="#">
-							<i class="fa fa-search"></i>
-						</a>
-					</div>
 					<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>
 			</div>
 		</div>
+		<div class="search_wrap">
+				<form action="search.php" method="GET" >
+            		<div class="search_box">	
+            			<input class="search-txt" name="searchkey" type="text" placeholder="search">
+            			<button class="btn btn_common"><i class="fa fa-search"></i> </button>
+           			</div>
+        		</form>
+        		</div>
 
-<!--THIS IS FOR THE PRODUCTS NA TALAGA-->
+
 
 				<div class="small-container">
 					<div class=" row row-2">
@@ -101,39 +156,40 @@ include_once "includes/function.inc.php";
 				<p><br><br></p>
 				
 				<div class="footer">
-				<div class="container">
-					<div class="row">
-						<div class="footer-col-1">
-							<h3>Download our App</h3>
-							<p> Download App for Android</p>
-						</div>
-						<div class="footer-cl-2">
-							<img src="img/logo1.png" width="100px" height="100px">
-						
-							</div>
-						<div class="footer-col-3">
-							<h3>Useful Links</h3>
-							<ul>
-								<li>Coupons</li>
-								<li>Blog Post</li>
-								<li>Return Policy</li>
-								<li>Join Affiliates</li>
-							</ul>
-						</div>
-						<div class="footer-col-4">
-							<h3>Follow Us</h3>
-							<ul>
-								<li>Facebook</li>
-								<li>Twitter</li>
-								<li>Instagram</li>
-								<li>Youtube</li>
-							</ul>
-					</div>
+		<div class="container">
+			<div class="row">			
+				<div class="footer-col">
+					<img src="img/logo1.png" alt="" height="120px" width="120px">
 				</div>
-				<hr>
-				<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
+				<div class="footer-col1">
+					<h2 align="center">Pasalubong for Every Juan</h2>
+						<div align="center" class="social">
+							<a href="https://facebook.com/"><i class='fa fa-facebook fa-2x'>  </i></a>
+							
+							<a href="https://twitter.com/"><i class="fa fa-twitter fa-2x">		</i></a>
+							
+							<a href="https://instagram.com/"><i class="fa fa-instagram fa-2x">  </i></a>
+
+							<a href="https://snapchat.com/"><i class="fa fa-snapchat fa-2x">  </i></a>
+						</div>
+				</div>
+				<div class="footer-col1">
+					<h3><b>Contact Us:</b></h3>
+					<b>Address:</b> Centro Orriental Polangui Albay</li>
+					<br>
+					<b>Email:</b> sueandvenirph@bicol-u.edu.ph</li>
+					<br>
+					<b>Contact:</b> 09759213248 / 09156392652</li>
+					
+
+
+						</div>
+				</div>
 			</div>
+			<hr>
+			<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
 		</div>
+	</div>
 
 		<script>
 			var MenuItems = document.getElementById("MenuItems");
@@ -152,4 +208,4 @@ include_once "includes/function.inc.php";
 		</script>
 
 	</body>
-	</html>
+</html>

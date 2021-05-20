@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
     switch($_SESSION['usertype']){
-        case 'A' : header("location: admin_page.php");
+        case 'A' : header("location: admin/index.php");
                    break;
         case 'C' : break;
     }
@@ -29,6 +29,9 @@ include_once "includes/function.inc.php";
 		} 
 		table{
 			table-layout: fixed;
+		}
+		.btn{
+			size: 10px;
 		}
 		</style>
 </head>
@@ -93,6 +96,7 @@ include_once "includes/function.inc.php";
 
     <?php
     			 $sql_cart_list = "SELECT c.id
+    			 		, i.item_id
                         , i.item_name
                         , i.item_img
                         , i.item_price
@@ -104,7 +108,8 @@ include_once "includes/function.inc.php";
                         JOIN items as i
                         ON (c.item_id = i.item_id)
                         WHERE c.user_id = ? 
-                        AND c.status = 'P'; ";
+                        AND c.status = 'P'
+                        GROUP BY i.item_id; ";
 
                 $stmt=mysqli_stmt_init($conn);
         
@@ -145,16 +150,14 @@ include_once "includes/function.inc.php";
 				  <?php echo "</td>"  ?>
        <td>
                         
+                        
                     <form action="includes/updatecart.php" method="post">
                             <input hidden type="text" name="cart_id" value="<?php echo $row['id']; ?>">
-                            <input type="text" name="cart_status" value="<?php echo $row['cart_status'] == 'P' ? 'C' : 'P';  ?>">    
+                            <input hidden type="text" name="cart_status" value="<?php echo $row['cart_status'] == 'P' ? 'C' : 'P';  ?>">    
                             <input type="number"  class="cart-qty" name="item_qty"value="<?php echo $row['qty']; ?>">
-                            <button class="btn"><?php echo $row['cart_status'] == 'C' ? "Unconfirm <i class='fa fa-check'></i>" : "Confirm";  ?>   </button>
+                            <button><?php echo $row['cart_status'] == 'C' ? "Cancel <i class='fa fa-times'></i>" : "Confirm <i class='fa fa-check'></i>";  ?>   </button>
                     </form>
                        
-                    
-                           
-                 
        </td>
 
 				<td> Php <?php  echo number_format($row['subtotal_price'],2); ?> </td>
@@ -164,7 +167,7 @@ include_once "includes/function.inc.php";
 		 <?php }
                         
     ?>
-
+    
     <p class="cart-sum" align="right">
     <?php $summary = getCartSummary($conn, $_SESSION['userid']); 
             foreach($summary as $key => $nval){
@@ -174,42 +177,43 @@ include_once "includes/function.inc.php";
                     } 
                     echo "<br>";                    
         ?> 
-         <a class="btn cart_check_out" href="checkout2.php?checkout=1"><b>Check Out</b></a>
-    </p>
+      
+        <a class="btn cart_check_out" type="button"  id="checkout" href="checkout.php" onclick><b>Check Out</b></a>
+    </p> 
 
 		</div>
 	</p>
 </div>
 	
-
-				
-	<div class="footer">
+			<div class="footer">
 		<div class="container">
-			<div class="row">
-				<div class="footer-col-1">
-					<h3>Download our App</h3>
-					<p> Download App for Android</p>
+			<div class="row">			
+				<div class="footer-col">
+					<img src="img/logo1.png" alt="" height="120px" width="120px">
 				</div>
-				<div class="footer-cl-2">
-					<img src="img/logo1.png" width="100px" height="100px">
+				<div class="footer-col1">
+					<h2 align="center">Pasalubong for Every Juan</h2>
+						<div align="center" class="social">
+							<a href="https://facebook.com/"><i class='fa fa-facebook fa-2x'>  </i></a>
+							
+							<a href="https://twitter.com/"><i class="fa fa-twitter fa-2x">		</i></a>
+							
+							<a href="https://instagram.com/"><i class="fa fa-instagram fa-2x">  </i></a>
+
+							<a href="https://snapchat.com/"><i class="fa fa-snapchat fa-2x">  </i></a>
+						</div>
 				</div>
-				<div class="footer-col-3">
-					<h3>Useful Links</h3>
-					<ul>
-						<li>Coupons</li>
-						<li>Blog Post</li>
-						<li>Return Policy</li>
-						<li>Join Affiliates</li>
-					</ul>
-				</div>
-				<div class="footer-col-4">
-					<h3>Follow Us</h3>
-					<ul>
-						<li>Facebook</li>
-						<li>Twitter</li>
-						<li>Instagram</li>
-						<li>Youtube</li>
-					</ul>
+				<div class="footer-col1">
+					<h3><b>Contact Us:</b></h3>
+					<b>Address:</b> Centro Orriental Polangui Albay</li>
+					<br>
+					<b>Email:</b> sueandvenirph@bicol-u.edu.ph</li>
+					<br>
+					<b>Contact:</b> 09759213248 / 09156392652</li>
+					
+
+
+						</div>
 				</div>
 			</div>
 			<hr>
@@ -217,46 +221,21 @@ include_once "includes/function.inc.php";
 		</div>
 	</div>
 
-	<script>
-		var MenuItems = document.getElementById("MenuItems");
+		<script>
+			var MenuItems = document.getElementById("MenuItems");
 
-		MenuItems.style.maxHeight = "0px";
+			MenuItems.style.maxHeight = "0px";
 
-		function menutoggle(){
-			if (MenuItems.style.maxHeight == "0px") 
-			{
-				MenuItems.style.maxHeight = "200px";
-			}
-			else{
+			function menutoggle(){
+				if (MenuItems.style.maxHeight == "0px") {
+					MenuItems.style.maxHeight = "200px";
+				}
+				else{
 					MenuItems.style.maxHeight = "0px";
 				}
 			}
-	</script>
-	<script>
-        
-    function deleteconfig(){
 
-        var del=confirm("Are you sure you want to delete this record?");
-        if (del==true){
-            return true;
-        }else{
-            alert("Record Not Deleted");
-            return false;
-        } 
-    }
+		</script>
 
-//    function updateconfig(){
-//    var upd=confirm("Do you want to update record?");
-//        if (upd == true){
-//           return true;
-//        }
-//        else{
-//            alert("Record Not Updated");
-//            return false;
-//            exit();
-//        }
-//    }
-</script>
-
-</body>
+	</body>
 </html>

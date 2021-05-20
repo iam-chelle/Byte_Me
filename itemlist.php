@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
     switch($_SESSION['usertype']){
-        case 'A' : header("location: admin_page.php");
+        case 'A' : header("location: admin/index.php");
                    break;
         case 'C' : break;
     }
@@ -107,9 +107,9 @@ include_once "includes/function.inc.php";
                             
                             <div class="col-4">
                                 <img src="img/<?php echo $val['item_img'];?>" alt="" width="200px" height="200px">
-                                <h4><?php echo $val['item_name'];?></h4>
+                                <h3><?php echo $val['item_name'];?></h3>
                                 <h4>PHP <?php echo $val['item_price'];?> .00 </h4><br>
-                                <h3>Product Details</h3>
+                              
                                 <p><?php echo $val['item_details'];?></p>
                                 <p><i>(<?php echo $val['store_name'];?>)</i></p>
                                 <form action="includes/processcart.php" method="post">
@@ -127,40 +127,41 @@ include_once "includes/function.inc.php";
 				    
 				    <?php } ?>
 				</div>
-				<div class="footer">
-				<div class="container">
-					<div class="row">
-						<div class="footer-col-1">
-							<h3>Download our App</h3>
-							<p> Download App for Android</p>
-						</div>
-						<div class="footer-cl-2">
-							<img src="img/logo1.png" width="100px" height="100px">
-						
-							</div>
-						<div class="footer-col-3">
-							<h3>Useful Links</h3>
-							<ul>
-								<li>Coupons</li>
-								<li>Blog Post</li>
-								<li>Return Policy</li>
-								<li>Join Affiliates</li>
-							</ul>
-						</div>
-						<div class="footer-col-4">
-							<h3>Follow Us</h3>
-							<ul>
-								<li>Facebook</li>
-								<li>Twitter</li>
-								<li>Instagram</li>
-								<li>Youtube</li>
-							</ul>
-					</div>
+					<div class="footer">
+		<div class="container">
+			<div class="row">			
+				<div class="footer-col">
+					<img src="img/logo1.png" alt="" height="120px" width="120px">
 				</div>
-				<hr>
-				<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
+				<div class="footer-col1">
+					<h2 align="center">Pasalubong for Every Juan</h2>
+						<div align="center" class="social">
+							<a href="https://facebook.com/"><i class='fa fa-facebook fa-2x'>  </i></a>
+							
+							<a href="https://twitter.com/"><i class="fa fa-twitter fa-2x">		</i></a>
+							
+							<a href="https://instagram.com/"><i class="fa fa-instagram fa-2x">  </i></a>
+
+							<a href="https://snapchat.com/"><i class="fa fa-snapchat fa-2x">  </i></a>
+						</div>
+				</div>
+				<div class="footer-col1">
+					<h3><b>Contact Us:</b></h3>
+					<b>Address:</b> Centro Orriental Polangui Albay</li>
+					<br>
+					<b>Email:</b> sueandvenirph@bicol-u.edu.ph</li>
+					<br>
+					<b>Contact:</b> 09759213248 / 09156392652</li>
+					
+
+
+						</div>
+				</div>
 			</div>
+			<hr>
+			<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
 		</div>
+	</div>
 
 		<script>
 			var MenuItems = document.getElementById("MenuItems");
@@ -178,6 +179,5 @@ include_once "includes/function.inc.php";
 
 		</script>
 
-
-		</body>
-		</html>
+	</body>
+</html>

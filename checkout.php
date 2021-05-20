@@ -11,8 +11,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" type="text/css" href="css/style.css">
       <title>Sue and Venir</title>
-      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
-      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' /> -->
       <style>
     table{
       table-layout: fixed;
@@ -80,12 +80,14 @@
                         , c.qty
                         , c.user_id
                         , c.store_id
+                        , c.cart_status
                         ,i.item_price * c.qty subtotal_price
                         FROM cart c
                         JOIN items as i
                         ON (c.item_id = i.item_id)
                         WHERE c.user_id = ?
-                        AND c.status = 'P'; ";
+                        AND c.status = 'P'
+                        AND c.cart_status = 'C'; ";
 
                 $stmt=mysqli_stmt_init($conn);
         
@@ -104,7 +106,7 @@
    <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-12 px-4 pb-4" id="order">
-              <h4 class="text-center text-info p-2">Confirm your order!</h4>
+              <h2 class="text-center text-info p-2">Confirm your order!</h2>
               <div class="jumbotron p-3 mb-2 text-center">
                
         <?php
@@ -120,7 +122,7 @@
               </tr>
           
                <?php
-              
+      if(!empty($resultData)){  
         while($row = mysqli_fetch_assoc($resultData)){ ?>
         <form action="includes/processorder.php" method="Post">
               <input hidden type="text" name="order_number" value="<?php echo $ordernum; ?>" >
@@ -130,44 +132,101 @@
               <input hidden type="text" name="qty" value="<?php echo $row['qty'];?>">
           
       <tr>     
-        <td class="items"> <p class="lead"><b><?php echo ($row['item_name'] . "  " ) ?></b></p>  </td>
-        <td class="price"> Php <?php  echo number_format($row['item_price'],2); ?> </td>
-        <td> <p class="lead"><b><?php echo ($row['qty'] . " pcs " ) ?> </b></p> </td>
+        <td> <p class="items"><?php echo ($row['item_name'] . "  " ) ?></p>  </td>
+        <td> <p class="price"> Php <?php  echo number_format($row['item_price'],2); ?></p></td>
+        <td> <p><?php echo ($row['qty'] . " pcs " ) ?></p> </td>
         <td> Php <?php  echo number_format($row['subtotal_price'],2); ?> </td>
       </tr>
       
-    <?php }  ?> 
+    <?php }  
+  }
+      else{ ?>
+              <tr>
+                  <td colspan="5">No Orders Found</td>
+              </tr>
+          <?php }
+      ?>
       </table>
           </div>
   
         </div>
     </div>
-    <div class="row">
-        <div class="col-8"></div>
+
+    <div class="row" align="center">
+        <div class="col-8">
         <div class="col-4">
-            
-            
-        </div>
-     <p class="cart-sum" align="right">
+      
     <?php $summary = getCartSummary($conn, $_SESSION['userid']); 
             foreach($summary as $key => $nval){
-                    echo "<h5><b>Total Qty:</b> ". $nval['total_qty'] . " pcs "; 
+                    echo "<p><b>Total Qty: </b>". $nval['total_qty'] . "pcs "; 
                     echo "<br>";
-                    echo "<h5><b>Total Amount Payable: </b> Php ". number_format($nval['total_price'],2);
-                    echo "<h6><b>Standard Delivery Method : </b> Cash On Delivery" ;
-                    } 
-                    echo "<br>";                    
-        ?> 
-
-   
-            <br>
-            <input type="submit" name="submit" value="Place Order" class="btn btn-danger btn-block">
-          </div>
+                    echo "<p><b>Total Amount Payable: </b> Php ". number_format($nval['total_price'],2);
+                    echo "<br>";
+                    echo "<p><b>Standard Delivery Method : </b> Cash On Delivery" ;
+                    }               
+        ?>
+            <!-- <input type="submit" name="submit"  href="checkout2.php?checkout=1" value="Place Order" class="btn btn-danger btn-block"> -->
+              <a class="btn btn-danger btn-block" href="checkout2.php?checkout=1"><b>Check Out</b></a>
+              </div>
+          </div>                                    
     </div>
 </form>
+</table>
+</div>
+</div>
      
-      
+   
+      <div class="footer">
+    <div class="container">
+      <div class="row">     
+        <div class="footer-col">
+          <img src="img/logo1.png" alt="" height="120px" width="120px">
+        </div>
+        <div class="footer-col1">
+          <h4 align="center">Pasalubong for Every Juan</h4>
+            <div align="center" class="social">
+              <a href="https://facebook.com/"><i class='fa fa-facebook fa-2x'>  </i></a>
+              
+              <a href="https://twitter.com/"><i class="fa fa-twitter fa-2x">    </i></a>
+              
+              <a href="https://instagram.com/"><i class="fa fa-instagram fa-2x">  </i></a>
+
+              <a href="https://snapchat.com/"><i class="fa fa-snapchat fa-2x">  </i></a>
+            </div>
+        </div>
+        <div class="footer-col1">
+          <h3><b>Contact Us:</b></h3>
+          <b>Address:</b> Centro Orriental Polangui Albay</li>
+          <br>
+          <b>Email:</b> sueandvenirph@bicol-u.edu.ph</li>
+          <br>
+          <b>Contact:</b> 09759213248 / 09156392652</li>
+          
 
 
-</body>
+            </div>
+        </div>
+      </div>
+      <hr>
+      <p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
+    </div>
+  </div>
+
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle(){
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        }
+        else{
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+
+    </script>
+
+  </body>
 </html>

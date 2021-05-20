@@ -4,7 +4,7 @@
         session_start();
         if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])) {
             switch($_SESSION['usertype']){
-                case 'A' : header("location: admin/admin.php");
+                case 'A' : header("location: admin/index.php");
                            break;
                 case 'C' : break;
             }
@@ -53,6 +53,7 @@ include_once "includes/function.inc.php";
                             <li><a href="products.php">Products</a></li>
                             <li><a href="about.php">About us</a></li>
                             <li><a href="services.php">Services</a></li>
+                            <li><a href="about.php">Account</a></li>
                             <li class="nav-item">
                             <a href="cart.php" class="nav-link no-border-orange"
                            data-bs-toggle="collapse" 
@@ -83,10 +84,14 @@ include_once "includes/function.inc.php";
                     </a>
                         </ul>
                     </nav>
+                    <img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
                 </div>
             </div>
         </div>
         
+
+    
+
         <div id="content"><!-- #content Begin -->
        <div class="container"><!-- container Begin -->
            <div class="col-md-12"><!-- col-md-12 Begin -->
@@ -125,11 +130,28 @@ include_once "includes/function.inc.php";
                    }
                    
                    ?>
+
                    
                </div><!-- box Finish -->
                
            </div><!-- col-md-9 Finish -->
            
+            <div class="col-md-9"><!-- col-md-9 Begin -->
+               
+               <div class="box"><!-- box Begin -->
+                   
+                   <?php
+                   
+                   if (isset($_GET['order_history'])){
+                       include("order_history.php");
+                   }
+                   
+                   ?>
+                   
+                   
+               </div><!-- box Finish -->
+               
+           </div><!-- col-md-9 Finish -->
        </div><!-- container Finish -->
    </div><!-- #content Finish -->
    
@@ -142,56 +164,59 @@ include_once "includes/function.inc.php";
                 <p><br><br></p>
                 <p><br><br></p>
                 
-                <div class="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="footer-col-1">
-                            <h3>Download our App</h3>
-                            <p> Download App for Android</p>
-                        </div>
-                        <div class="footer-cl-2">
-                            <img src="img/logo1.png" width="100px" height="100px">
-                        
-                            </div>
-                        <div class="footer-col-3">
-                            <h3>Useful Links</h3>
-                            <ul>
-                                <li>Coupons</li>
-                                <li>Blog Post</li>
-                                <li>Return Policy</li>
-                                <li>Join Affiliates</li>
-                            </ul>
-                        </div>
-                        <div class="footer-col-4">
-                            <h3>Follow Us</h3>
-                            <ul>
-                                <li>Facebook</li>
-                                <li>Twitter</li>
-                                <li>Instagram</li>
-                                <li>Youtube</li>
-                            </ul>
-                    </div>
-                </div>
-                <hr>
-                <p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
+             
+  
+      <div class="footer">
+    <div class="container">
+      <div class="row">     
+        <div class="footer-col">
+          <img src="img/logo1.png" alt="" height="120px" width="120px">
+        </div>
+        <div class="footer-col1">
+          <h4 align="center">Pasalubong for Every Juan</h4>
+            <div align="center" class="social">
+              <a href="https://facebook.com/"><i class='fa fa-facebook fa-2x'>  </i></a>
+              
+              <a href="https://twitter.com/"><i class="fa fa-twitter fa-2x">    </i></a>
+              
+              <a href="https://instagram.com/"><i class="fa fa-instagram fa-2x">  </i></a>
+
+              <a href="https://snapchat.com/"><i class="fa fa-snapchat fa-2x">  </i></a>
             </div>
         </div>
+        <div class="footer-col1">
+          <h3><b>Contact Us:</b></h3>
+          <b>Address:</b> Centro Orriental Polangui Albay</li>
+          <br>
+          <b>Email:</b> sueandvenirph@bicol-u.edu.ph</li>
+          <br>
+          <b>Contact:</b> 09759213248 / 09156392652</li>
+          
 
-        <script>
-            var MenuItems = document.getElementById("MenuItems");
 
-            MenuItems.style.maxHeight = "0px";
+            </div>
+        </div>
+      </div>
+      <hr>
+      <p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
+    </div>
+  </div>
 
-            function menutoggle(){
-                if (MenuItems.style.maxHeight == "0px") {
-                    MenuItems.style.maxHeight = "200px";
-                }
-                else{
-                    MenuItems.style.maxHeight = "0px";
-                }
-            }
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
 
-        </script>
+      MenuItems.style.maxHeight = "0px";
 
-    </body>
-    </html>
+      function menutoggle(){
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        }
+        else{
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+
+    </script>
+
+  </body>
+</html>

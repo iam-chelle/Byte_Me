@@ -59,13 +59,6 @@
 						</ul>
 					</nav>
 							
-
-					<div class="search-box">
-						<input class="search-txt" type="text" name="" placeholder="Type to search">
-						<a class="search-btn" href="#">
-							<i class="fa fa-search"></i>
-						</a>
-					</div>
 							<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>	
 			</div>
@@ -79,7 +72,7 @@
 						</div>
 						<div class="col">
 					<h2>About Us:</h2>
-					<h4>This website was created by Jeff Esguerra , Rochelle Balmas and Gieraldine Gallano on March 2021</h4> &nbsp;
+					<h4>This website is created by Jeff Esguerra , Rochelle Balmas and Gieraldine Gallano on March 2021</h4> &nbsp;
 					<p>Sue and Venir offers a variety of choices for you to choose from! 
 						We offer Bicol’s best foods and beverages from best of the best in towns. 
 						The shop also offers a variety of hand-made crafts and accessories that you will surely love! 
@@ -117,97 +110,91 @@
 		<!--team1-->
 		<div class="our-team">
 			<div class="pic">
-				<img src="img/user2.jpg" height="200px" width="200px" alt="">
+				<img src="img/balmas.jpg" height="200px" width="200px" alt="">
 			</div>
 			<div class="team-content">
 				<h3 class="title1"> Rochelle Balmas </h3>
-				<span class="post"> Writer </span>
+				<span class="post"> Cheerleader </span>
 			</div>
 			<ul class="social">
-				<li><a href="#" class="fa fa-facebook-square"></a></li>
-				<li><a href="#" class="fa fa-twitter-square"></a></li>
-				<li><a href="#" class="fa fa-instagram"></a></li>
-				<li><a href="#" class="fa fa-snapchat-square"></a></li>
+				<li><a href="https://facebook.com/" class="fa fa-facebook-square"></a></li>
+				<li><a href="https://twitter.com/" class="fa fa-twitter-square"></a></li>
+				<li><a href="https://instagram.com/" class="fa fa-instagram"></a></li>
+				<li><a href="https://snapchat.com/" class="fa fa-snapchat-square"></a></li>
 			</ul>
 		</div>
 
 			<!--team2-->
 		<div class="our-team">
 			<div class="pic">
-				<img src="img/user1.jpg" height="200px" width="200px" alt="">
+				<img src="img/Esguerra.jpg" height="200px" width="200px" alt="">
 			</div>
 			<div class="team-content">
 				<h3 class="title1"> Jeff Esguerra </h3>
-				<span class="post"> Writer </span>
+				<span class="post"> Taga Timpla ng Kape </span>
 			</div>
 			<ul class="social">
-				<li><a href="#" class="fa fa-facebook-square"></a></li>
-				<li><a href="#" class="fa fa-twitter-square"></a></li>
-				<li><a href="#" class="fa fa-instagram"></a></li>
-				<li><a href="#" class="fa fa-snapchat-square"></a></li>
+				<li><a href="https://facebook.com/" class="fa fa-facebook-square"></a></li>
+				<li><a href="https://twitter.com/" class="fa fa-twitter-square"></a></li>
+				<li><a href="https://instagram.com/" class="fa fa-instagram"></a></li>
+				<li><a href="https://snapchat.com/" class="fa fa-snapchat-square"></a></li>
 			</ul>
 		</div>
 
 			<!--team3-->
 		<div class="our-team">
 			<div class="pic">
-				<img src="img/user3.png" height="200px" width="200px" alt="">
+				<img src="img/gallano.jpg" height="200px" width="200px" alt="">
 			</div>
 			<div class="team-content">
 				<h3 class="title1"> Gieraldine Gallano </h3>
-				<span class="post"> Writer </span>
+				<span class="post"> Taga SANA ALL </span>
 			</div>
 			<ul class="social">
-				<li><a href="#" class="fa fa-facebook-square"></a></li>
-				<li><a href="#" class="fa fa-twitter-square"></a></li>
-				<li><a href="#" class="fa fa-instagram"></a></li>
-				<li><a href="#" class="fa fa-snapchat-square"></a></li>
+				<li><a href="https://facebook.com/" class="fa fa-facebook-square"></a></li>
+				<li><a href="https://twitter.com/" class="fa fa-twitter-square"></a></li>
+				<li><a href="https://instagram.com/" class="fa fa-instagram"></a></li>
+				<li><a href="https://snapchat.com/" class="fa fa-snapchat-square"></a></li>
 			</ul>
 		</div>
 	</div>
 </div>
 	</div>
-
-
-
-
-
-
-
-			<div class="footer">
-				<div class="container">
-					<div class="row">
-						<div class="footer-col-1">
-							<h3>Download our App</h3>
-							<p> Download App for Android</p>
-						</div>
-						<div class="footer-cl-2">
-							<img src="img/logo1.png" width="100px" height="100px">
-						
-							</div>
-						<div class="footer-col-3">
-							<h3>Useful Links</h3>
-							<ul>
-								<li>Coupons</li>
-								<li>Blog Post</li>
-								<li>Return Policy</li>
-								<li>Join Affiliates</li>
-							</ul>
-						</div>
-						<div class="footer-col-4">
-							<h3>Follow Us</h3>
-							<ul>
-								<li>Facebook</li>
-								<li>Twitter</li>
-								<li>Instagram</li>
-								<li>Youtube</li>
-							</ul>
-					</div>
+<div class="footer">
+		<div class="container">
+			<div class="row">			
+				<div class="footer-col">
+					<img src="img/logo1.png" alt="" height="120px" width="120px">
 				</div>
-				<hr>
-				<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
+				<div class="footer-col1">
+					<h2 align="center">Pasalubong for Every Juan</h2>
+						<div align="center" class="social">
+							<a href="https://facebook.com/"><i class='fa fa-facebook fa-2x'>  </i></a>
+							
+							<a href="https://twitter.com/"><i class="fa fa-twitter fa-2x">		</i></a>
+							
+							<a href="https://instagram.com/"><i class="fa fa-instagram fa-2x">  </i></a>
+
+							<a href="https://snapchat.com/"><i class="fa fa-snapchat fa-2x">  </i></a>
+						</div>
+				</div>
+				<div class="footer-col1">
+					<h3><b>Contact Us:</b></h3>
+					<b>Address:</b> Centro Orriental Polangui Albay</li>
+					<br>
+					<b>Email:</b> sueandvenirph@bicol-u.edu.ph</li>
+					<br>
+					<b>Contact:</b> 09759213248 / 09156392652</li>
+					
+
+
+						</div>
+				</div>
 			</div>
+			<hr>
+			<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
 		</div>
+	</div>
 
 		<script>
 			var MenuItems = document.getElementById("MenuItems");
@@ -222,20 +209,6 @@
 					MenuItems.style.maxHeight = "0px";
 				}
 			}
-
-		</script>
-
-		<script>
-			
-			
-
-			function login(){
-				RegForm.style.transform ="translateX(300px)";
-				LoginForm.style.transform ="translateX(300px)";
-				Indicator.style.transform ="translateX(0px)";
-				var Indicator= document.getElementById("Indicator");
-			}
-
 
 		</script>
 

@@ -4,21 +4,17 @@ session_start();
 
 if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
     switch($_SESSION['usertype']){
-        case 'A' : header("location: admin/admin.php");
+        case 'A' : header("location: admin/index.php");
                    break;
-        case 'C' : header("location: customer.php");
+        case 'C' : header("location: customer.php?cust_order");
                    break;
     }
 }
-
-?>
-
-
-<?php
 		include_once "includes/db_conn.php";
 		include_once "includes/function.inc.php";
 
 		?>
+
 
 
 		<!DOCTYPE html>
@@ -30,6 +26,16 @@ if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
 			<title>Sue and Venir</title>
 			<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+			<style>
+				.error{
+					background: #f2DEDE;
+					color: #A94442;
+					padding: 10px;
+					width: 100%;
+					border-radius: 5px;
+					text-align: left;
+				}
+			</style>
 		</head>
 		<body>
 			<?php
@@ -80,13 +86,6 @@ if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
 						</ul>
 					</nav>
 						
-
-					<div class="search-box">
-						<input class="search-txt" type="text" name="" placeholder="Type to search">
-						<a class="search-btn" href="#">
-							<i class="fa fa-search"></i>
-						</a>
-					</div>
 							<img src="img/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
 				</div>	
 			</div>
@@ -103,12 +102,17 @@ if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
 								<span onclick="login()">Login</span>
 								<span><a href="register.php"> Sign Up</a></span>
 								<hr id="Indicator">
-						</div>
-								<form action="includes/login.php" method="POST" id="LoginForm">
-								<input type="text" placeholder="Username" required id="usname" name="usname">
-								<input type="password" placeholder="Password" required id="pword" name="pword">
+							</div>
+						
+							<form action="includes/login.php" method="POST" id="LoginForm">
+								<?php
+									if (isset($_GET['error'])) {?>
+									<p class="error"><?php echo $_GET['error']; ?></p>
+								<?php } ?> 
+								<input type="text" placeholder="Username" required id="usname"  name="usname">
+								<input type="password" placeholder="Password" required id="pword"  name="pword">
 								<button type="submit" class="btn" name="Login"> Login </button>
-								<a href="">Forgot Password?</a>
+								<a href="register.php">Create Account?</a>
 							</form>	
 						</div>
 					</div>
@@ -117,39 +121,40 @@ if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
 		</div>
 	
 			<div class="footer">
-				<div class="container">
-					<div class="row">
-						<div class="footer-col-1">
-							<h3>Download our App</h3>
-							<p> Download App for Android</p>
-						</div>
-						<div class="footer-cl-2">
-							<img src="img/logo1.png" width="100px" height="100px">
-						
-							</div>
-						<div class="footer-col-3">
-							<h3>Useful Links</h3>
-							<ul>
-								<li>Coupons</li>
-								<li>Blog Post</li>
-								<li>Return Policy</li>
-								<li>Join Affiliates</li>
-							</ul>
-						</div>
-						<div class="footer-col-4">
-							<h3>Follow Us</h3>
-							<ul>
-								<li>Facebook</li>
-								<li>Twitter</li>
-								<li>Instagram</li>
-								<li>Youtube</li>
-							</ul>
-					</div>
+		<div class="container">
+			<div class="row">			
+				<div class="footer-col">
+					<img src="img/logo1.png" alt="" height="120px" width="120px">
 				</div>
-				<hr>
-				<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
+				<div class="footer-col1">
+					<h2 align="center">Pasalubong for Every Juan</h2>
+						<div align="center" class="social">
+							<a href="https://facebook.com/"><i class='fa fa-facebook fa-2x'>  </i></a>
+							
+							<a href="https://twitter.com/"><i class="fa fa-twitter fa-2x">		</i></a>
+							
+							<a href="https://instagram.com/"><i class="fa fa-instagram fa-2x">  </i></a>
+
+							<a href="https://snapchat.com/"><i class="fa fa-snapchat fa-2x">  </i></a>
+						</div>
+				</div>
+				<div class="footer-col1">
+					<h3><b>Contact Us:</b></h3>
+					<b>Address:</b> Centro Orriental Polangui Albay</li>
+					<br>
+					<b>Email:</b> sueandvenirph@bicol-u.edu.ph</li>
+					<br>
+					<b>Contact:</b> 09759213248 / 09156392652</li>
+					
+
+
+						</div>
+				</div>
 			</div>
+			<hr>
+			<p class="copyright"> Copyright &copy; 2021 - www.sueandvenir.com.ph</p>
 		</div>
+	</div>
 
 		<script>
 			var MenuItems = document.getElementById("MenuItems");
@@ -166,8 +171,7 @@ if(isset($_SESSION['usertype']) && isset($_SESSION['userid'])){
 			}
 
 		</script>
-
-		<script>
+			<script>
 			
 			
 
